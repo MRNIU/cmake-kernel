@@ -1,32 +1,20 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
+# This file is a part of MRNIU/cmake-kernel
+# (https://github.com/MRNIU/cmake-kernel).
+#
+# .gitignore for MRNIU/cmake-kernel.
+
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+.DS_Store
+build
+build_aarch64
+build_riscv64
+build_x86_64
+doc/html
+cmake-build*
+.gdbinit
+tools/opensbi/build
+.vscode
+.idea
+3rd
+Doxyfile
