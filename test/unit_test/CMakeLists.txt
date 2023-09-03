@@ -15,6 +15,10 @@ add_executable(unit_test
 )
 
 target_link_libraries(unit_test PRIVATE
+        arch
+        driver
+        libc
+        libcxx
         gtest_main
 )
 

@@ -15,6 +15,10 @@ add_executable(integration_test
 )
 
 target_link_libraries(integration_test PRIVATE
+        arch
+        driver
+        libc
+        libcxx
         gtest_main
 )
 
