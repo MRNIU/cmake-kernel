@@ -71,8 +71,8 @@ add_custom_command(TARGET ${PROJECT_NAME}_kernel.elf POST_BUILD
         COMMAND ${CMAKE_OBJCOPY} --adjust-vma 0xC0000000 ${PROJECT_NAME}_kernel.elf
 )
 
-add_custom_target(test_gnu_efi DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf)
-add_custom_command(TARGET test_gnu_efi
+add_custom_target(${PROJECT_NAME}_run DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf)
+add_custom_command(TARGET ${PROJECT_NAME}_run
         COMMENT "Run ${PROJECT_NAME} in qemu."
         COMMAND mkdir -p ./image
         COMMAND cp ./${PROJECT_NAME}_boot.efi ./image/
@@ -85,7 +85,7 @@ add_custom_command(TARGET test_gnu_efi
 )
 
 # 在 qemu 中调试
-add_custom_target(test_gnu_efi_debug DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf
+add_custom_target(${PROJECT_NAME}_debug DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf
         COMMENT "Debug Kernel in qemu ..."
         COMMAND ${CMAKE_COMMAND} -E echo ${QEMU_FLAGS}
         COMMAND qemu-system-${TARGET_ARCH}
