@@ -210,6 +210,7 @@ var NAVTREEINDEX0 =
 "structsbiret__t.html#a78449f5d7934aa1a6cd54351b16cc00d":[4,0,4,1],
 "structsbiret__t.html#a907730633f8936f3e11a4a10aa8a8442":[4,0,4,0],
 "test_2system__test_2gnu__efi__test_2boot_8cpp.html":[5,0,1,1,0,0],
+"test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e":[5,0,1,1,0,0,2],
 "test_2system__test_2gnu__efi__test_2boot_8cpp.html#a6a85af07dfae68410a3578451bbab116":[5,0,1,1,0,0,0],
 "test_2system__test_2gnu__efi__test_2boot_8cpp.html#a888070898d2d56fa4c1654a3c8409719":[5,0,1,1,0,0,1],
 "test_2system__test_2gnu__efi__test_2boot_8cpp_source.html":[5,0,1,1,0,0],

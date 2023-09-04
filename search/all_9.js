@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['kernel_2eh_43',['kernel.h',['../kernel_8h.html',1,'']]],
-  ['kernel_5fexecutable_5fpath_44',['KERNEL_EXECUTABLE_PATH',['../test_2system__test_2gnu__efi__test_2boot_8cpp.html#a6a85af07dfae68410a3578451bbab116',1,'boot.cpp']]]
+  ['imagebase_43',['ImageBase',['../test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e',1,'boot.cpp']]]
 ];

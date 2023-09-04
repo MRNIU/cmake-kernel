@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['section_5fbuf_5fsize_179',['SECTION_BUF_SIZE',['../classElf.html#aead66f632e243546cc5cef1a654b404e',1,'Elf']]],
-  ['shdr_180',['shdr',['../classElf.html#a6a780ca4b86b353ef42ac64f9d64c845',1,'Elf']]],
-  ['shstrtab_5fbuf_181',['shstrtab_buf',['../classElf.html#a87eb8da130b534167a0e4a0047d78d18',1,'Elf']]]
+  ['root_5ffile_5fsystem_180',['root_file_system',['../classElf.html#a2401458a0b098dcccfa120bb64c12afd',1,'Elf']]]
 ];

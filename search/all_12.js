@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wait_5ffor_5finput_85',['wait_for_input',['../ostream_8cpp.html#a27887edc523c98e888002e7756434ef9',1,'wait_for_input(EFI_INPUT_KEY *_key) -&gt; EFI_STATUS:&#160;ostream.cpp'],['../ostream_8hpp.html#a27887edc523c98e888002e7756434ef9',1,'wait_for_input(EFI_INPUT_KEY *_key) -&gt; EFI_STATUS:&#160;ostream.cpp']]]
+  ['value_85',['value',['../structsbiret__t.html#a78449f5d7934aa1a6cd54351b16cc00d',1,'sbiret_t']]]
 ];
