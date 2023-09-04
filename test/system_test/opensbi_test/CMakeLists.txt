@@ -16,7 +16,7 @@ enable_language(CXX)
 add_executable(${PROJECT_NAME}_kernel.elf
         boot.S
         boot.cpp
-        )
+)
 
 add_header_3rd(${PROJECT_NAME}_kernel.elf)
 
@@ -25,13 +25,13 @@ target_compile_options(${PROJECT_NAME}_kernel.elf PRIVATE
         -O0
         -Wall -Wextra
         -ffreestanding
-        )
+)
 
 target_link_options(${PROJECT_NAME}_kernel.elf PRIVATE
         -no-pie
         -nostdlib
         -T ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/link.ld
-        )
+)
 
 target_compile_options(cxxrt-static PRIVATE
         -fPIC
@@ -42,6 +42,9 @@ add_dependencies(${PROJECT_NAME}_kernel.elf
         cxxrt-static
 )
 
+readelf_a(${PROJECT_NAME}_kernel.elf)
+objdump_D(${PROJECT_NAME}_kernel.elf)
+
 add_custom_target(test_opensbi DEPENDS ${PROJECT_NAME}_kernel.elf)
 add_custom_command(TARGET test_opensbi
         COMMENT "Run ${PROJECT_NAME}_kernel.elf in qemu."
@@ -50,4 +53,4 @@ add_custom_command(TARGET test_opensbi
         -machine virt -nographic
         -bios ${opensbi_BINARY_DIR}/platform/generic/firmware/fw_jump.elf
         -kernel ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_kernel.elf
-        )
+)
