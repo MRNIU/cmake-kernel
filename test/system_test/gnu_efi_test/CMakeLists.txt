@@ -33,7 +33,6 @@ target_compile_options(${PROJECT_NAME}_boot.elf PRIVATE
 target_link_options(${PROJECT_NAME}_boot.elf PRIVATE
         -shared -Wl,-Bsymbolic
         -nostartfiles
-        -T ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/link.ld
         )
 
 target_link_libraries(${PROJECT_NAME}_boot.elf PRIVATE

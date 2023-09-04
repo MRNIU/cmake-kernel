@@ -22,6 +22,8 @@
 
 #define KERNEL_EXECUTABLE_PATH (wchar_t *)L"gnu-efi-test_kernel.elf"
 
+uintptr_t ImageBase = 0;
+
 extern "C" [[maybe_unused]] EFI_STATUS EFIAPI
 efi_main(EFI_HANDLE _image_handle,
          [[maybe_unused]] EFI_SYSTEM_TABLE *_system_table) {
