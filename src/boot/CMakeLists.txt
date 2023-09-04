@@ -12,7 +12,7 @@ project(
 
 enable_language(CXX)
 
-add_executable(${BOOT_ELF_OUTPUT_NAME}
+add_executable(boot
         boot.cpp
         load_elf.cpp
         ostream.cpp
@@ -21,35 +21,38 @@ add_executable(${BOOT_ELF_OUTPUT_NAME}
 )
 
 # 添加头文件
-add_header_boot(${BOOT_ELF_OUTPUT_NAME})
-add_header_3rd(${BOOT_ELF_OUTPUT_NAME})
+add_header_boot(boot)
+add_header_3rd(boot)
 
 # 添加编译参数
-target_compile_options(${BOOT_ELF_OUTPUT_NAME} PRIVATE
+target_compile_options(boot PRIVATE
         ${DEFAULT_BOOT_COMPILE_OPTIONS}
 )
 
 # 添加链接参数
-target_link_options(${BOOT_ELF_OUTPUT_NAME} PRIVATE
+target_link_options(boot PRIVATE
         ${DEFAULT_BOOT_LINK_OPTIONS}
 )
 
 # 添加要链接的库
-target_link_libraries(${BOOT_ELF_OUTPUT_NAME} PRIVATE
+target_link_libraries(boot PRIVATE
         ${DEFAULT_BOOT_LINK_LIB}
 )
 
 # 添加依赖
-add_dependencies(${BOOT_ELF_OUTPUT_NAME}
+add_dependencies(boot
         ${COMPILE_DEPENDS}
 )
 
+set_target_properties(boot PROPERTIES PREFIX "")
+set_target_properties(boot PROPERTIES OUTPUT_NAME ${BOOT_ELF_OUTPUT_NAME})
+
 # readelf -a
-readelf_a(${BOOT_ELF_OUTPUT_NAME})
+readelf_a(boot)
 
 # objdump -D
-objdump_D(${BOOT_ELF_OUTPUT_NAME})
+objdump_D(boot)
 
 # 制作 boot.efi
 # 将引导调整为 efi
-elf2efi(${BOOT_ELF_OUTPUT_NAME} ${BOOT_EFI_OUTPUT_NAME})
+elf2efi(boot ${BOOT_EFI_OUTPUT_NAME})
