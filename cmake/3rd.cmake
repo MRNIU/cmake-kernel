@@ -144,43 +144,6 @@ if (${TARGET_ARCH} STREQUAL "riscv64")
 endif ()
 
 if (${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
-    # # https://gitlab.com/bztsrc/posix-uefi
-    # CPMAddPackage(
-    #   NAME posix-uefi
-    #   GIT_REPOSITORY https://gitlab.com/bztsrc/posix-uefi.git
-    #   GIT_TAG a643ed09f52575d402b934d6f1c6f08c64fd8c64
-    #   DOWNLOAD_ONLY True
-    # )
-    # if (posix-uefi_ADDED)
-    #   # 编译 posix-uefi
-    #   add_custom_target(posix-uefi
-    #           # make 时编译
-    #           ALL
-    #           WORKING_DIRECTORY ${posix-uefi_SOURCE_DIR}/uefi
-    #           COMMAND
-    #           # @todo 仅支持 gcc
-    #             USE_GCC=1
-    #             ARCH=${TARGET_ARCH}
-    #             make
-    #           COMMAND 
-    #             ${CMAKE_COMMAND} 
-    #             -E 
-    #             make_directory 
-    #             ${posix-uefi_BINARY_DIR}
-    #           COMMAND 
-    #             ${CMAKE_COMMAND} 
-    #             -E 
-    #             copy_directory
-    #             ${posix-uefi_SOURCE_DIR}/build
-    #             ${posix-uefi_BINARY_DIR}
-    #           COMMAND
-    #             make clean
-    #           COMMAND
-    #             rm -rf ${posix-uefi_SOURCE_DIR}/build
-    #           COMMENT "build posix-uefi..."
-    #   )
-    # endif()
-
     # https://sourceforge.net/projects/gnu-efi/
     CPMAddPackage(
             NAME gnu-efi
