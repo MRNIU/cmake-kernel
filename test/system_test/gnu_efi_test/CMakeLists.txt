@@ -18,38 +18,25 @@ add_executable(${PROJECT_NAME}_boot.elf
         ostream.cpp
         graphics.cpp
         memory.cpp
-        )
+)
 
 add_header_3rd(${PROJECT_NAME}_boot.elf)
 
 target_compile_options(${PROJECT_NAME}_boot.elf PRIVATE
-        -fpermissive -fshort-wchar -Wall -Wextra
-        -DGNU_EFI_USE_MS_ABI
-        -g -ggdb
-        -lgcc -lg++ -lsupc++ -lstdc++
-        -fPIC
-        )
+        ${DEFAULT_BOOT_COMPILE_OPTIONS}
+)
 
 target_link_options(${PROJECT_NAME}_boot.elf PRIVATE
-        -shared -Wl,-Bsymbolic
-        -nostartfiles
-        )
+        ${DEFAULT_BOOT_LINK_OPTIONS}
+)
 
 target_link_libraries(${PROJECT_NAME}_boot.elf PRIVATE
-        ${gnu-efi_BINARY_DIR}/gnuefi/crt0-efi-${TARGET_ARCH}.o
-        ${gnu-efi_BINARY_DIR}/gnuefi/libgnuefi.a
-        ${gnu-efi_BINARY_DIR}/lib/libefi.a
-        ${libcxxrt_BINARY_DIR}/lib/libcxxrt.a
-        )
-
-target_compile_options(cxxrt-static PRIVATE
-        -fPIC
-        )
+        ${DEFAULT_BOOT_LINK_LIB}
+)
 
 add_dependencies(${PROJECT_NAME}_boot.elf
-        gnu-efi
-        cxxrt-static
-        )
+        ${COMPILE_DEPENDS}
+)
 
 add_custom_target(${PROJECT_NAME}_boot.efi DEPENDS ${PROJECT_NAME}_boot.elf)
 add_custom_command(TARGET ${PROJECT_NAME}_boot.efi
@@ -62,27 +49,26 @@ add_custom_command(TARGET ${PROJECT_NAME}_boot.efi
         -R .dynsym
         --target=efi-app-${TARGET_ARCH} --subsystem=10
         COMMENT "Build ${PROJECT_NAME}_boot.efi done."
-        )
+)
 
 add_executable(${PROJECT_NAME}_kernel.elf
         main.cpp
-        )
+)
 
 add_header_kernel(${PROJECT_NAME}_kernel.elf)
 
 target_compile_options(${PROJECT_NAME}_kernel.elf PRIVATE
-        -Wall -Wextra
-        -lgcc -lg++ -lsupc++ -lstdc++
-        )
+        ${DEFAULT_KERNEL_COMPILE_OPTIONS}
+)
 
 target_link_options(${PROJECT_NAME}_kernel.elf PRIVATE
-        -nostartfiles
-        )
+        ${DEFAULT_KERNEL_LINK_OPTIONS}
+)
 
 add_custom_command(TARGET ${PROJECT_NAME}_kernel.elf POST_BUILD
         COMMENT "Move kernel to 0xC0000000"
         COMMAND ${CMAKE_OBJCOPY} --adjust-vma 0xC0000000 ${PROJECT_NAME}_kernel.elf
-        )
+)
 
 add_custom_target(test_gnu_efi DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf)
 add_custom_command(TARGET test_gnu_efi
@@ -95,7 +81,7 @@ add_custom_command(TARGET test_gnu_efi
         -serial stdio -monitor telnet::2333,server,nowait -net none
         -bios ${ovmf_BINARY_DIR}/OVMF_${TARGET_ARCH}.fd
         -hda fat:rw:./image/
-        )
+)
 
 # 在 qemu 中调试
 add_custom_target(test_gnu_efi_debug DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf
@@ -108,4 +94,4 @@ add_custom_target(test_gnu_efi_debug DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_
         -hda fat:rw:./image/
         -S
         -gdb ${QEMU_GDB_PORT}
-        )
+)

@@ -243,6 +243,9 @@ CPMAddPackage(
         GIT_REPOSITORY https://github.com/libcxxrt/libcxxrt
         GIT_TAG a0f7f5c139a7daf71de0de201b6c405d852b1dc1
 )
+target_compile_options(cxxrt-static PRIVATE
+        -fPIC
+)
 
 # https://github.com/cpm-cmake/CPMLicenses.cmake
 # 保持在 CPMAddPackage 的最后

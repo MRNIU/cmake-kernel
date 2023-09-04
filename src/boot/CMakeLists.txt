@@ -14,31 +14,31 @@ enable_language(CXX)
 
 add_executable(${BOOT_ELF_OUTPUT_NAME}
         boot.cpp
-        )
+)
 
 # 添加头文件
 add_header_boot(${BOOT_ELF_OUTPUT_NAME})
 add_header_3rd(${BOOT_ELF_OUTPUT_NAME})
 
-# 添加依赖
-add_dependencies(${BOOT_ELF_OUTPUT_NAME}
-        ${COMPILE_DEPENDS}
-        )
-
 # 添加编译参数
 target_compile_options(${BOOT_ELF_OUTPUT_NAME} PRIVATE
-        ${DEFAULT_COMPILE_OPTIONS}
-        )
+        ${DEFAULT_BOOT_COMPILE_OPTIONS}
+)
 
 # 添加链接参数
 target_link_options(${BOOT_ELF_OUTPUT_NAME} PRIVATE
-        ${DEFAULT_LINK_OPTIONS}
-        )
+        ${DEFAULT_BOOT_LINK_OPTIONS}
+)
 
 # 添加要链接的库
 target_link_libraries(${BOOT_ELF_OUTPUT_NAME} PRIVATE
-        ${DEFAULT_LINK_LIB}
-        )
+        ${DEFAULT_BOOT_LINK_LIB}
+)
+
+# 添加依赖
+add_dependencies(${BOOT_ELF_OUTPUT_NAME}
+        ${COMPILE_DEPENDS}
+)
 
 # readelf -a
 readelf_a(${BOOT_ELF_OUTPUT_NAME})

@@ -45,10 +45,6 @@
           "type": "STRING",
           "value": "Debug"
         },
-        "ENABLE_GNU_EFI": {
-          "type": "BOOL",
-          "value": "ON"
-        },
         "ENABLE_TEST_COVERAGE": {
           "type": "BOOL",
           "value": "ON"

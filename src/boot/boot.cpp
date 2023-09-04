@@ -18,14 +18,12 @@
 extern "C" {
 #endif
 
-#if ENABLE_GNU_EFI == 1
-#include "efi.h"
-#include "efilib.h"
-#else
-#include "posix-uefi/uefi.h"
-#endif
-
 #include <elf.h>
+
+#include <efi.h>
+#include <efilib.h>
+
+uintptr_t ImageBase = 0;
 
 EFI_STATUS
 efi_main(EFI_HANDLE _image_handle, EFI_SYSTEM_TABLE *_system_table) {

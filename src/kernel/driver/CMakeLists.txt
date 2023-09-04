@@ -22,10 +22,10 @@ add_header_driver(${PROJECT_NAME})
 
 # 添加编译参数
 target_compile_options(${PROJECT_NAME} PRIVATE
-        ${DEFAULT_COMPILE_OPTIONS}
+        ${DEFAULT_KERNEL_COMPILE_OPTIONS}
         )
 
 # 添加链接参数
 target_link_options(${PROJECT_NAME} PRIVATE
-        ${DEFAULT_LINK_OPTIONS}
+        ${DEFAULT_KERNEL_LINK_OPTIONS}
         )
