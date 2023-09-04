@@ -14,12 +14,13 @@ enable_language(CXX)
 
 add_executable(${PROJECT_NAME}_boot.elf
         boot.cpp
-        load_elf.cpp
-        ostream.cpp
-        graphics.cpp
-        memory.cpp
+        ${CMAKE_SOURCE_DIR}/src/boot/load_elf.cpp
+        ${CMAKE_SOURCE_DIR}/src/boot/ostream.cpp
+        ${CMAKE_SOURCE_DIR}/src/boot/graphics.cpp
+        ${CMAKE_SOURCE_DIR}/src/boot/memory.cpp
 )
 
+add_header_boot(${PROJECT_NAME}_boot.elf)
 add_header_3rd(${PROJECT_NAME}_boot.elf)
 
 target_compile_options(${PROJECT_NAME}_boot.elf PRIVATE

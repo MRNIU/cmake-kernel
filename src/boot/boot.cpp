@@ -14,71 +14,95 @@
  * </table>
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <exception>
+#include <stdexcept>
 
-#include <elf.h>
+#include "load_elf.h"
+#include "ostream.hpp"
 
-#include <efi.h>
-#include <efilib.h>
+#define KERNEL_EXECUTABLE_PATH (wchar_t *)L"kernel.elf"
 
 uintptr_t ImageBase = 0;
 
-EFI_STATUS
-efi_main(EFI_HANDLE _image_handle, EFI_SYSTEM_TABLE *_system_table) {
-  EFI_GUID loaded_image_protocol = LOADED_IMAGE_PROTOCOL;
-  EFI_STATUS efi_status;
-  EFI_LOADED_IMAGE *li;
-  EFI_MEMORY_TYPE pat = PoolAllocationType;
-  VOID *void_li_p;
+extern "C" [[maybe_unused]] EFI_STATUS EFIAPI
+efi_main(EFI_HANDLE _image_handle,
+         [[maybe_unused]] EFI_SYSTEM_TABLE *_system_table) {
+  EFI_STATUS status = EFI_SUCCESS;
+  uint64_t kernel_addr = 0;
+  try {
+    // 输出 efi 信息
+    EFI_LOADED_IMAGE *loaded_image = nullptr;
+    status = LibLocateProtocol(&LoadedImageProtocol,
+                               reinterpret_cast<void **>(&loaded_image));
+    if (EFI_ERROR(status)) {
+      debug << L"LibLocateProtocol: " << status << ostream::endl;
+    }
 
-  InitializeLib(_image_handle, _system_table);
-  PoolAllocationType = EfiLoaderData;
+    debug << L"Revision:        " << ostream::hex_X << loaded_image->Revision
+          << ostream::endl;
+    debug << L"ParentHandle:    " << ostream::hex_X
+          << loaded_image->ParentHandle << ostream::endl;
+    debug << L"SystemTable:     " << ostream::hex_X << loaded_image->SystemTable
+          << ostream::endl;
+    debug << L"DeviceHandle:    " << ostream::hex_X
+          << loaded_image->DeviceHandle << ostream::endl;
+    debug << L"FilePath:        " << ostream::hex_X << loaded_image->FilePath
+          << ostream::endl;
+    debug << L"Reserved:        " << ostream::hex_X << loaded_image->Reserved
+          << ostream::endl;
+    debug << L"LoadOptionsSize: " << ostream::hex_X
+          << loaded_image->LoadOptionsSize << ostream::endl;
+    debug << L"LoadOptions:     " << ostream::hex_X << loaded_image->LoadOptions
+          << ostream::endl;
+    debug << L"ImageBase:       " << ostream::hex_X << loaded_image->ImageBase
+          << ostream::endl;
+    debug << L"ImageSize:       " << ostream::hex_X << loaded_image->ImageSize
+          << ostream::endl;
+    debug << L"ImageCodeType:   " << ostream::hex_X
+          << loaded_image->ImageCodeType << ostream::endl;
+    debug << L"ImageDataType:   " << ostream::hex_X
+          << loaded_image->ImageDataType << ostream::endl;
+    debug << L"Unload:          " << ostream::hex_X << loaded_image->Unload
+          << ostream::endl;
 
-  Print(L"Hello World! (0xd=0x%x, 13=%d)\n", 13, 13);
-  Print(L"before InitializeLib(): PoolAllocationType=%d\n", pat);
-  Print(L" after InitializeLib(): PoolAllocationType=%d\n", PoolAllocationType);
-
-  /*
-   * Locate loaded_image_handle instance.
-   */
-
-  Print(L"BS->HandleProtocol()  ");
-
-  efi_status = uefi_call_wrapper((void *)BS->HandleProtocol, 3, _image_handle,
-                                 &loaded_image_protocol, &void_li_p);
-  li = (EFI_LOADED_IMAGE *)void_li_p;
-
-  Print(L"%xh (%r)\n", efi_status, efi_status);
-
-  if (efi_status != EFI_SUCCESS) {
-    return efi_status;
+    // 初始化 Graphics
+    auto graphics = Graphics();
+    // 打印图形信息
+    graphics.print_info();
+    // 设置为 1920*1080
+    graphics.set_mode();
+    // 初始化 Memory
+    auto memory = Memory();
+    memory.print_info();
+    // 加载内核
+    auto elf = Elf(KERNEL_EXECUTABLE_PATH);
+    //    kernel_addr = elf.load_kernel_image();
+    kernel_addr = elf.load();
+  } catch (const std::exception &_e) {
+    debug << L"Fatal Error: " << _e.what() << ostream::endl;
+    return EFI_LOAD_ERROR;
+  }
+  debug << L"Set Kernel Entry Point to: [" << ostream::hex_X << kernel_addr
+        << L"]" << ostream::endl;
+  // 退出 boot service
+  uint64_t desc_count = 0;
+  EFI_MEMORY_DESCRIPTOR *memory_map = nullptr;
+  uint64_t map_key = 0;
+  uint64_t desc_size = 0;
+  uint32_t desc_version = 0;
+  memory_map = LibMemoryMap(&desc_count, &map_key, &desc_size, &desc_version);
+  if (memory_map == nullptr) {
+    debug << L"LibMemoryMap failed: memory_map == nullptr" << ostream::endl;
+    throw std::runtime_error("memory_map == nullptr");
+  }
+  status = uefi_call_wrapper(gBS->ExitBootServices, 2, _image_handle, map_key);
+  if (EFI_ERROR(status)) {
+    debug << L"ExitBootServices failed, Memory Map has Changed " << status
+          << ostream::endl;
   }
 
-  Print(L"  li: %xh\n", li);
-
-  if (!li) {
-    return EFI_UNSUPPORTED;
-  }
-
-  Print(L"  li->Revision:        %xh\n", li->Revision);
-  Print(L"  li->ParentHandle:    %xh\n", li->ParentHandle);
-  Print(L"  li->SystemTable:     %xh\n", li->SystemTable);
-  Print(L"  li->DeviceHandle:    %xh\n", li->DeviceHandle);
-  Print(L"  li->FilePath:        %xh\n", li->FilePath);
-  Print(L"  li->Reserved:        %xh\n", li->Reserved);
-  Print(L"  li->LoadOptionsSize: %xh\n", li->LoadOptionsSize);
-  Print(L"  li->LoadOptions:     %xh\n", li->LoadOptions);
-  Print(L"  li->ImageBase:       %xh\n", li->ImageBase);
-  Print(L"  li->ImageSize:       %xh\n", li->ImageSize);
-  Print(L"  li->ImageCodeType:   %xh\n", li->ImageCodeType);
-  Print(L"  li->ImageDataType:   %xh\n", li->ImageDataType);
-  Print(L"  li->Unload:          %xh\n", li->Unload);
+  auto kernel_entry = (void (*)())kernel_addr;
+  kernel_entry();
 
   return EFI_SUCCESS;
 }
-
-#ifdef __cplusplus
-}
-#endif

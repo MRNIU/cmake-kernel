@@ -14,6 +14,10 @@ enable_language(CXX)
 
 add_executable(${BOOT_ELF_OUTPUT_NAME}
         boot.cpp
+        load_elf.cpp
+        ostream.cpp
+        graphics.cpp
+        memory.cpp
 )
 
 # 添加头文件
