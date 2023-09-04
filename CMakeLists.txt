@@ -46,7 +46,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
 
 if (TARGET_ARCH STREQUAL "x86_64" OR TARGET_ARCH STREQUAL "aarch64")
     # 创建 image 目录并将文件复制
-    make_uefi_dir(${PROJECT_BINARY_DIR}/src/boot/boot.efi $<TARGET_FILE:${KERNEL_ELF_OUTPUT_NAME}> ${PROJECT_SOURCE_DIR}/tools/startup.nsh)
+    make_uefi_dir(${PROJECT_BINARY_DIR}/src/boot/boot.efi $<TARGET_FILE:kernel> ${PROJECT_SOURCE_DIR}/tools/startup.nsh)
 endif ()
 
 # qemu 参数设置
@@ -70,7 +70,7 @@ elseif (TARGET_ARCH STREQUAL "riscv64")
             -nographic
             # 可选项，qemu7.0 自带了 opensbi1.0
             -bios ${opensbi_BINARY_DIR}/platform/generic/firmware/fw_jump.elf
-            -kernel $<TARGET_FILE:${KERNEL_ELF_OUTPUT_NAME}>
+            -kernel $<TARGET_FILE:kernel>
     )
 elseif (TARGET_ARCH STREQUAL "aarch64")
     # @todo

@@ -65,7 +65,7 @@ if (${TARGET_ARCH} STREQUAL "x86_64")
 elseif (${TARGET_ARCH} STREQUAL "riscv64")
     list(APPEND RUN_DEPENDS
             opensbi
-            ${KERNEL_ELF_OUTPUT_NAME}
+            $<TARGET_FILE:kernel>
     )
 elseif (${TARGET_ARCH} STREQUAL "aarch64")
     list(APPEND RUN_DEPENDS
