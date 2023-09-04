@@ -30,17 +30,17 @@ add_header_3rd(${KERNEL_ELF_OUTPUT_NAME})
 # 添加依赖
 add_dependencies(${KERNEL_ELF_OUTPUT_NAME}
         ${COMPILE_DEPENDS}
-        )
+)
 
 # 添加编译参数
 target_compile_options(${KERNEL_ELF_OUTPUT_NAME} PRIVATE
         ${DEFAULT_KERNEL_COMPILE_OPTIONS}
-        )
+)
 
 # 添加链接参数
 target_link_options(${KERNEL_ELF_OUTPUT_NAME} PRIVATE
         ${DEFAULT_KERNEL_LINK_OPTIONS}
-        )
+)
 
 # 添加要链接的库
 target_link_libraries(${KERNEL_ELF_OUTPUT_NAME} PRIVATE
@@ -49,4 +49,4 @@ target_link_libraries(${KERNEL_ELF_OUTPUT_NAME} PRIVATE
         libcxx
         arch
         driver
-        )
+)

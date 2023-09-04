@@ -15,7 +15,7 @@ enable_language(C)
 # 生成对象库
 add_library(${PROJECT_NAME} OBJECT
         ${PROJECT_SOURCE_DIR}/libc.c
-        )
+)
 
 # 添加头文件
 add_header_libc(${PROJECT_NAME})
@@ -23,9 +23,9 @@ add_header_libc(${PROJECT_NAME})
 # 添加编译参数
 target_compile_options(${PROJECT_NAME} PRIVATE
         ${DEFAULT_KERNEL_COMPILE_OPTIONS}
-        )
+)
 
 # 添加链接参数
 target_link_options(${PROJECT_NAME} PRIVATE
         ${DEFAULT_KERNEL_LINK_OPTIONS}
-        )
+)
