@@ -95,10 +95,10 @@ $(document).ready(function(){initNavTree('test_2system__test_2gnu__efi__test_2bo
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a6a85af07dfae68410a3578451bbab116">   23</a></span>&#160;<span class="preprocessor">#define KERNEL_EXECUTABLE_PATH (wchar_t *)L&quot;gnu-efi-test_kernel.elf&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">   25</a></span>&#160;uintptr_t <a class="code" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">ImageBase</a> = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">   25</a></span>&#160;uintptr_t <a class="code" href="src_2boot_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">ImageBase</a> = 0;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> [[maybe_unused]] EFI_STATUS EFIAPI</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a888070898d2d56fa4c1654a3c8409719">   28</a></span>&#160;<a class="code" href="src_2boot_2boot_8cpp.html#a89a10a631a2c6f45c9deed1a4457d4ea">efi_main</a>(EFI_HANDLE _image_handle,</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a888070898d2d56fa4c1654a3c8409719">   28</a></span>&#160;<a class="code" href="src_2boot_2boot_8cpp.html#a888070898d2d56fa4c1654a3c8409719">efi_main</a>(EFI_HANDLE _image_handle,</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;         [[maybe_unused]] EFI_SYSTEM_TABLE *_system_table) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  EFI_STATUS status = EFI_SUCCESS;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  uint64_t kernel_addr = 0;</div>
@@ -187,8 +187,8 @@ $(document).ready(function(){initNavTree('test_2system__test_2gnu__efi__test_2bo
 <div class="ttc" id="aload__elf_8h_html"><div class="ttname"><a href="load__elf_8h.html">load_elf.h</a></div><div class="ttdoc">load_elf h</div></div>
 <div class="ttc" id="aostream_8hpp_html"><div class="ttname"><a href="ostream_8hpp.html">ostream.hpp</a></div><div class="ttdoc">ostream hpp</div></div>
 <div class="ttc" id="aostream_8hpp_html_a48c0732d1726c996d7fad294439777fc"><div class="ttname"><a href="ostream_8hpp.html#a48c0732d1726c996d7fad294439777fc">debug</a></div><div class="ttdeci">static ostream debug</div><div class="ttdoc">全局输出流</div><div class="ttdef"><b>Definition:</b> <a href="ostream_8hpp_source.html#l00194">ostream.hpp:194</a></div></div>
-<div class="ttc" id="asrc_2boot_2boot_8cpp_html_a89a10a631a2c6f45c9deed1a4457d4ea"><div class="ttname"><a href="src_2boot_2boot_8cpp.html#a89a10a631a2c6f45c9deed1a4457d4ea">efi_main</a></div><div class="ttdeci">EFI_STATUS efi_main(EFI_HANDLE _image_handle, EFI_SYSTEM_TABLE *_system_table)</div><div class="ttdef"><b>Definition:</b> <a href="src_2boot_2boot_8cpp_source.html#l00031">boot.cpp:31</a></div></div>
-<div class="ttc" id="atest_2system__test_2gnu__efi__test_2boot_8cpp_html_a3c37e763c85d8c042a579e38a938e53e"><div class="ttname"><a href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">ImageBase</a></div><div class="ttdeci">uintptr_t ImageBase</div><div class="ttdef"><b>Definition:</b> <a href="test_2system__test_2gnu__efi__test_2boot_8cpp_source.html#l00025">boot.cpp:25</a></div></div>
+<div class="ttc" id="asrc_2boot_2boot_8cpp_html_a3c37e763c85d8c042a579e38a938e53e"><div class="ttname"><a href="src_2boot_2boot_8cpp.html#a3c37e763c85d8c042a579e38a938e53e">ImageBase</a></div><div class="ttdeci">uintptr_t ImageBase</div><div class="ttdef"><b>Definition:</b> <a href="src_2boot_2boot_8cpp_source.html#l00025">boot.cpp:25</a></div></div>
+<div class="ttc" id="asrc_2boot_2boot_8cpp_html_a888070898d2d56fa4c1654a3c8409719"><div class="ttname"><a href="src_2boot_2boot_8cpp.html#a888070898d2d56fa4c1654a3c8409719">efi_main</a></div><div class="ttdeci">EFI_STATUS EFIAPI efi_main(EFI_HANDLE _image_handle, [[maybe_unused]] EFI_SYSTEM_TABLE *_system_table)</div><div class="ttdef"><b>Definition:</b> <a href="src_2boot_2boot_8cpp_source.html#l00028">boot.cpp:28</a></div></div>
 <div class="ttc" id="atest_2system__test_2gnu__efi__test_2boot_8cpp_html_a6a85af07dfae68410a3578451bbab116"><div class="ttname"><a href="test_2system__test_2gnu__efi__test_2boot_8cpp.html#a6a85af07dfae68410a3578451bbab116">KERNEL_EXECUTABLE_PATH</a></div><div class="ttdeci">#define KERNEL_EXECUTABLE_PATH</div><div class="ttdef"><b>Definition:</b> <a href="test_2system__test_2gnu__efi__test_2boot_8cpp_source.html#l00023">boot.cpp:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -196,7 +196,7 @@ $(document).ready(function(){initNavTree('test_2system__test_2gnu__efi__test_2bo
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="dir_dfa008182f2a40cb988df1752e3cb29d.html">system_test</a></li><li class="navelem"><a class="el" href="dir_cfadb97a047f54946ed337ecdf10cbea.html">gnu_efi_test</a></li><li class="navelem"><a class="el" href="test_2system__test_2gnu__efi__test_2boot_8cpp.html">boot.cpp</a></li>
-    <li class="footer">Generated on Mon Sep 4 2023 09:59:21 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Sep 4 2023 15:24:16 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
