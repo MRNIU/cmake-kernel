@@ -1,5 +1,7 @@
 # cmake-kernel
 
+[![codecov](https://codecov.io/gh/MRNIU/cmake-kernel/graph/badge.svg?token=J7NKK3SBNJ)](https://codecov.io/gh/MRNIU/cmake-kernel)
+
 关键词：cmake kernel cross-compile cmake-templete
 
 用于构建内核的构建系统。
