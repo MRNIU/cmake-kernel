@@ -53,21 +53,20 @@ jobs:
       - name: x86_64
         run: |
           cmake --preset=build_x86_64 
-          cmake --build build_x86_64 --target boot.elf
-          cmake --build build_x86_64 --target kernel.elf
-          cmake --build build_x86_64 --target unit_test
-          cmake --build build_x86_64 --target integration_test
+          cmake --build build_x86_64 --target boot
+          cmake --build build_x86_64 --target kernel
+          cmake --build build_x86_64 --target coverage
 
       - name: riscv64
         run: |
           cmake --preset=build_riscv64
-          cmake --build build_riscv64 --target kernel.elf
+          cmake --build build_riscv64 --target kernel
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build_x86_64/coverage/coverage.info
+          files: build_x86_64/coverage/coverage.info
           verbose: true
 
 #  build_osx:
