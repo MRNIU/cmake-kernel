@@ -45,9 +45,9 @@
           "type": "STRING",
           "value": "Debug"
         },
-        "ENABLE_TEST_COVERAGE": {
-          "type": "BOOL",
-          "value": "ON"
+        "COVERAGE_OUTPUT_DIR": {
+          "type": "STRING",
+          "value": "coverage"
         },
         "BOOT_ELF_OUTPUT_NAME": {
           "type": "STRING",
