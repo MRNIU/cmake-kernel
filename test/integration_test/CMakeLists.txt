@@ -19,6 +19,7 @@ target_compile_options(integration_test PRIVATE
 )
 
 target_link_options(integration_test PRIVATE
+        --coverage
         -fsanitize=leak 
         -fsanitize=address 
         -fno-omit-frame-pointer
