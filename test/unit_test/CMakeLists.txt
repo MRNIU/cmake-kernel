@@ -14,6 +14,16 @@ add_executable(unit_test
         example.cpp
 )
 
+target_compile_options(unit_test PRIVATE
+        --coverage
+)
+
+target_link_options(unit_test PRIVATE
+        -fsanitize=leak
+        -fsanitize=address
+        -fno-omit-frame-pointer
+)
+
 target_link_libraries(unit_test PRIVATE
         arch
         driver

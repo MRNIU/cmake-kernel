@@ -34,9 +34,6 @@ list(APPEND COMMON_COMPILE_OPTIONS
         -mtune=cortex-a72
         >
 
-        # 如果 ENABLE_TEST_COVERAGE 为 ON 则使用 -fprofile-arcs -ftest-coverage，否则为空
-        # $<BOOL:${ENABLE_TEST_COVERAGE}:-fprofile-arcs;-ftest-coverage>
-
         # gcc 特定选项
         $<$<CXX_COMPILER_ID:GNU>:
         >
