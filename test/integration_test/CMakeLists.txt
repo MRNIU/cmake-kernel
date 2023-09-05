@@ -15,22 +15,15 @@ add_executable(integration_test
 )
 
 target_compile_options(integration_test PRIVATE
-        --coverage
+        ${DEFAULT_TEST_COMPILE_OPTIONS}
 )
 
 target_link_options(integration_test PRIVATE
-        --coverage
-        -fsanitize=leak 
-        -fsanitize=address 
-        -fno-omit-frame-pointer
+        ${DEFAULT_TEST_LINK_OPTIONS}
 )
 
 target_link_libraries(integration_test PRIVATE
-        arch
-        driver
-        libc
-        libcxx
-        gtest_main
+        ${DEFAULT_TEST_LINK_LIB}
 )
 
 gtest_discover_tests(integration_test)
