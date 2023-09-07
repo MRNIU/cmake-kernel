@@ -34,15 +34,6 @@ if (APPLE)
     # 跳过编译器检查
     set(CMAKE_C_COMPILER_FORCED TRUE)
     set(CMAKE_CXX_COMPILER_FORCED TRUE)
-
-    # qemu
-    find_program(QEMU qemu-system-x86_64)
-    if (NOT QEMU)
-        message(FATAL_ERROR "qemu not found.\n"
-                "Run `brew install qemu-system` to install.")
-    else ()
-        message(STATUS "Found qemu ${QEMU}")
-    endif ()
 elseif (UNIX)
     message(STATUS "Now is UNIX-like OS's.")
     # GCC
@@ -52,14 +43,5 @@ elseif (UNIX)
                 "Run `sudo apt-get install -y gcc g++` to install.")
     else ()
         message(STATUS "Found g++ ${Compiler_gcc}")
-    endif ()
-
-    # qemu
-    find_program(QEMU qemu-system-x86_64)
-    if (NOT QEMU)
-        message(FATAL_ERROR "qemu not found.\n"
-                "Run `sudo apt-get install -y qemu-system` to install.")
-    else ()
-        message(STATUS "Found qemu ${QEMU}")
     endif ()
 endif ()

@@ -30,15 +30,6 @@ if (APPLE)
     set(CMAKE_NM ${TOOLCHAIN_PREFIX}nm)
     set(CMAKE_OBJDUMP ${TOOLCHAIN_PREFIX}objdump)
     set(CMAKE_RANLIB ${TOOLCHAIN_PREFIX}ranlib)
-
-    # qemu
-    find_program(QEMU qemu-system-riscv64)
-    if (NOT QEMU)
-        message(FATAL_ERROR "qemu not found.\n"
-                "Run `brew install qemu-system` to install.")
-    else ()
-        message(STATUS "Found qemu ${QEMU}")
-    endif ()
 elseif (UNIX)
     message(STATUS "Now is UNIX-like OS's.")
     # GCC
@@ -59,13 +50,4 @@ elseif (UNIX)
     set(CMAKE_NM ${TOOLCHAIN_PREFIX}nm)
     set(CMAKE_OBJDUMP ${TOOLCHAIN_PREFIX}objdump)
     set(CMAKE_RANLIB ${TOOLCHAIN_PREFIX}ranlib)
-
-    # qemu
-    find_program(QEMU qemu-system-riscv64)
-    if (NOT QEMU)
-        message(FATAL_ERROR "qemu not found.\n"
-                "Run `sudo apt install -y qemu-system` to install.")
-    else ()
-        message(STATUS "Found qemu ${QEMU}")
-    endif ()
 endif ()
