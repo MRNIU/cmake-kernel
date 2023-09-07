@@ -19,12 +19,12 @@
 .section .text.boot
 .global _start
 .type _start, @function
-.extern arch
+.extern main
 _start:
     // 设置栈地址
     la sp, stack_top
     // 跳转到 C 代码执行
-    call arch
+    call main
 loop:
     j loop
 
