@@ -60,7 +60,6 @@ endif()
 if(${TARGET_ARCH} STREQUAL "x86_64")
     list(APPEND RUN_DEPENDS
             ovmf
-            image_uefi
     )
 elseif(${TARGET_ARCH} STREQUAL "riscv64")
     list(APPEND RUN_DEPENDS
@@ -70,7 +69,6 @@ elseif(${TARGET_ARCH} STREQUAL "riscv64")
 elseif(${TARGET_ARCH} STREQUAL "aarch64")
     list(APPEND RUN_DEPENDS
             ovmf
-            image_uefi
     )
 endif()
 

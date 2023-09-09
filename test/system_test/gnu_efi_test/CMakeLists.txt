@@ -68,28 +68,17 @@ readelf_a(${PROJECT_NAME}_kernel.elf)
 # objdump -D
 objdump_D(${PROJECT_NAME}_kernel.elf)
 
-add_custom_target(${PROJECT_NAME}_run DEPENDS ${PROJECT_NAME}_boot.elf ${PROJECT_NAME}_kernel.elf ovmf)
-add_custom_command(TARGET ${PROJECT_NAME}_run
-        COMMENT "Run ${PROJECT_NAME} in qemu."
-        COMMAND mkdir -p ./image
-        COMMAND cp ./${PROJECT_NAME}_boot.efi ./image/
-        COMMAND cp ./${PROJECT_NAME}_kernel.elf ./image/
-        COMMAND qemu-system-x86_64
-        -m 4096M
-        -serial stdio -monitor telnet::2333,server,nowait -net none
-        -bios ${ovmf_BINARY_DIR}/OVMF_${TARGET_ARCH}.fd
-        -hda fat:rw:./image/
-)
-
-# 在 qemu 中调试
-add_custom_target(${PROJECT_NAME}_debug DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf
-        COMMENT "Debug Kernel in qemu ..."
-        COMMAND ${CMAKE_COMMAND} -E echo ${QEMU_FLAGS}
-        COMMAND qemu-system-${TARGET_ARCH}
-        -m 128M
-        -serial stdio -monitor telnet::2333,server,nowait -net none
-        -bios ${ovmf_BINARY_DIR}/OVMF_${TARGET_ARCH}.fd
-        -hda fat:rw:./image/
-        -S
-        -gdb ${QEMU_GDB_PORT}
+# 添加 run 和 debug target
+add_run_target(NAME ${PROJECT_NAME}
+    DEPENDS ${PROJECT_NAME}_boot.elf ${PROJECT_NAME}_kernel.elf ${RUN_DEPENDS} ${DEBUG_DEPENDS}
+    WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+    TARGET ${TARGET_ARCH}
+    BOOT ${PROJECT_NAME}_boot.efi
+    KERNEL $<TARGET_FILE:${PROJECT_NAME}_kernel.elf>
+    STARTUP ${CMAKE_SOURCE_DIR}/tools/startup.nsh
+    QEMU_FLAGS
+    -m 128M
+    -net none
+    -bios ${ovmf_BINARY_DIR}/OVMF_${TARGET_ARCH}.fd
+    -hda fat:rw:./image/
 )

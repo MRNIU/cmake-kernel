@@ -51,20 +51,6 @@ function (elf2efi _target _efi)
     )
 endfunction ()
 
-# 创建 image 目录并将文件复制
-# _boot: boot efi 文件
-# _kernel: kernel elf 文件
-# _startup: startup.nsh 文件
-function (make_uefi_dir _boot _kernel _startup)
-    add_custom_target(image_uefi DEPENDS boot ${_kernel}
-            COMMENT "Copying bootloader and kernel"
-            COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_BINARY_DIR}/image/
-            COMMAND ${CMAKE_COMMAND} -E copy ${_boot} ${PROJECT_BINARY_DIR}/image/
-            COMMAND ${CMAKE_COMMAND} -E copy ${_kernel} ${PROJECT_BINARY_DIR}/image/
-            COMMAND ${CMAKE_COMMAND} -E copy ${_startup} ${PROJECT_BINARY_DIR}/image/
-    )
-endfunction ()
-
 # 添加测试覆盖率 target
 # DEPENDS 要生成的 targets
 # SOURCE_DIR 源码路径
@@ -107,5 +93,53 @@ function (add_coverage_target)
             ${COVERAGE_OUTPUT_DIR}/coverage.info
             -o ${COVERAGE_OUTPUT_DIR}
             --branch-coverage
+    )
+endfunction ()
+
+# 添加运行 qemu target
+function (add_run_target)
+    # 解析参数
+    set(options)
+    set(one_value_keywords NAME TARGET WORKING_DIRECTORY BOOT KERNEL STARTUP)
+    set(multi_value_keywords DEPENDS QEMU_FLAGS)
+    cmake_parse_arguments(
+        ARG "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN}
+    )
+
+    list(APPEND commands
+        COMMAND ${CMAKE_COMMAND} -E copy ${ARG_KERNEL} image/
+    )
+    if(${ARG_TARGET} STREQUAL "x86_64")
+        list(APPEND commands
+            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
+            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
+        )
+    elseif(${ARG_TARGET} STREQUAL "aarch64")
+        list(APPEND commands
+            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
+            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
+        )
+    endif()
+
+    # 添加 target
+    add_custom_target(${ARG_NAME}_run DEPENDS ${ARG_DEPENDS}
+        WORKING_DIRECTORY ${ARG_WORKING_DIRECTORY}
+        COMMAND ${CMAKE_COMMAND} -E make_directory image/
+        ${commands}
+        COMMAND
+        qemu-system-${ARG_TARGET}
+        ${ARG_QEMU_FLAGS}
+    )
+    add_custom_target(${ARG_NAME}_debug DEPENDS ${ARG_DEPENDS}
+        WORKING_DIRECTORY ${ARG_WORKING_DIRECTORY}
+        COMMAND ${CMAKE_COMMAND} -E make_directory image/
+        ${commands}
+        COMMAND
+        qemu-system-${ARG_TARGET}
+        ${ARG_QEMU_FLAGS}
+        # 等待 gdb 连接
+        -S
+        # 使用 1234 端口
+        -gdb ${QEMU_GDB_PORT}
     )
 endfunction ()

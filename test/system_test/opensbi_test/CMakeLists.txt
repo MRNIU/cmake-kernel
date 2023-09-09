@@ -45,12 +45,15 @@ add_dependencies(${PROJECT_NAME}_kernel.elf
 readelf_a(${PROJECT_NAME}_kernel.elf)
 objdump_D(${PROJECT_NAME}_kernel.elf)
 
-add_custom_target(test_opensbi DEPENDS ${PROJECT_NAME}_kernel.elf)
-add_custom_command(TARGET test_opensbi
-        COMMENT "Run ${PROJECT_NAME}_kernel.elf in qemu."
-        COMMAND qemu-system-riscv64
-        -serial stdio -monitor telnet::2333,server,nowait
-        -machine virt -nographic
-        -bios ${opensbi_BINARY_DIR}/platform/generic/firmware/fw_jump.elf
-        -kernel ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_kernel.elf
+# 添加 run 和 debug target
+add_run_target(NAME ${PROJECT_NAME}
+    DEPENDS ${PROJECT_NAME}_kernel.elf ${RUN_DEPENDS} ${DEBUG_DEPENDS}
+    WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+    TARGET ${TARGET_ARCH}
+    KERNEL $<TARGET_FILE:${PROJECT_NAME}_kernel.elf>
+    QEMU_FLAGS
+    -serial stdio -monitor telnet::2333,server,nowait
+    -machine virt -nographic
+    -bios ${opensbi_BINARY_DIR}/platform/generic/firmware/fw_jump.elf
+    -kernel ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_kernel.elf
 )
