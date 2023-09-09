@@ -27,34 +27,26 @@ var NAVTREE =
   [ "cmake-kernel", "index.html", [
     [ "构建系统", "md_build.html", [
       [ "目录及文件介绍", "md_build.html#autotoc_md1", null ],
-      [ "命名规范", "md_build.html#autotoc_md2", null ],
-      [ "使用", "md_build.html#autotoc_md3", [
-        [ "交叉编译", "md_build.html#autotoc_md4", null ],
-        [ "调试", "md_build.html#autotoc_md5", null ],
-        [ "文档生成", "md_build.html#autotoc_md6", null ],
-        [ "静态分析", "md_build.html#autotoc_md7", null ],
-        [ "测试覆盖率", "md_build.html#autotoc_md8", null ],
-        [ "docker", "md_build.html#autotoc_md9", null ],
-        [ "第三方资源", "md_build.html#autotoc_md10", null ]
-      ] ],
-      [ "错误处理", "md_build.html#autotoc_md11", null ],
-      [ "TODO", "md_build.html#autotoc_md12", null ]
+      [ "命名规范", "md_build.html#autotoc_md2", null ]
     ] ],
     [ "构建 Docker 并通过 ssh 使用", "md_docker.html", [
-      [ "构建 Docker image", "md_docker.html#autotoc_md14", null ],
-      [ "启动容器，并配置 ssh", "md_docker.html#autotoc_md15", null ],
-      [ "配置 ssh", "md_docker.html#autotoc_md16", null ],
-      [ "配置 vscode", "md_docker.html#autotoc_md17", null ]
+      [ "构建 Docker image", "md_docker.html#autotoc_md4", null ],
+      [ "启动容器，并配置 ssh", "md_docker.html#autotoc_md5", null ],
+      [ "配置 ssh", "md_docker.html#autotoc_md6", null ],
+      [ "配置 vscode", "md_docker.html#autotoc_md7", null ]
     ] ],
     [ "cmake-kernel", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html", [
-      [ "设计", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md19", null ],
-      [ "实现", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md20", null ],
-      [ "使用", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md21", [
-        [ "调试", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md22", null ],
-        [ "文档生成", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md23", null ],
-        [ "测试覆盖率", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md24", null ]
+      [ "设计", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md9", null ],
+      [ "使用", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md10", [
+        [ "交叉编译", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md11", null ],
+        [ "调试", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md12", null ],
+        [ "文档生成", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md13", null ],
+        [ "静态分析", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md14", null ],
+        [ "测试覆盖率", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md15", null ],
+        [ "docker", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md16", null ],
+        [ "第三方资源", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md17", null ]
       ] ],
-      [ "错误处理", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md25", null ]
+      [ "已知问题", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md18", null ]
     ] ],
     [ "gnu_efi_test", "md__home_runner_work_cmake_kernel_cmake_kernel_test_system_test_gnu_efi_test_README.html", null ],
     [ "Classes", "annotated.html", [

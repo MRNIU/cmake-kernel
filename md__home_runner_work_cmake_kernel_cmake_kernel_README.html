@@ -89,95 +89,61 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <div class="textblock"><p><a href="https://codecov.io/gh/MRNIU/cmake-kernel"><img src="https://codecov.io/gh/MRNIU/cmake-kernel/graph/badge.svg?token=J7NKK3SBNJ" alt="codecov" style="pointer-events: none;" class="inline"/></a> <img src="https://github.com/MRNIU/cmake-kernel/actions/workflows/workflow.yml/badge.svg" alt="workflow" style="pointer-events: none;" class="inline"/></p>
 <p>关键词：cmake kernel cross-compile cmake-templete</p>
 <p>用于构建内核的构建系统。</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 设计</h1>
 <p>用于构建内核的构建系统</p>
 <p>构建系统提供的功能：</p>
 <ul>
-<li><p class="startli">[ ] 跨平台</p>
-<p class="startli">提供 gcc/clang 的支持</p>
-<p class="startli">需要独立的 CMAKE_TOOLCHAIN_FILE 指定编译器等</p>
-<p class="startli">组合如下</p>
-</li>
+<li>[ ] 跨平台</li>
 </ul>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadCenter">host   </th><th class="markdownTableHeadCenter">target   </th><th class="markdownTableHeadCenter">gcc   </th><th class="markdownTableHeadCenter">clang    </th></tr>
+<th class="markdownTableHeadCenter">HOST   </th><th class="markdownTableHeadCenter">TARGET    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">x86_64_elf-gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
+<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64, riscv64, aarch64    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">aarch64-unknown-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">riscv64-unknown-elf-gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">aarch64-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">riscv64-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td></tr>
+<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">TODO   </td></tr>
 </table>
-<p>host: 编译平台 target: 内核要运行的平台 gcc: 使用的 gcc 名称 clang: 使用的 clang 参数 TODO: 暂无测试条件 TEST: 需要进一步验证。</p>
 <ul>
 <li><p class="startli">[x] 对第三方依赖的支持/构建</p>
 <p class="startli">自动下载并编译第三方依赖</p>
 <p class="startli">自动生成相关 licence</p>
-<p class="startli">预期使用的第三方内容</p>
+<p class="startli">目前支持的第三方资源</p>
 </li>
 </ul>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadCenter">第三方内容   </th><th class="markdownTableHeadCenter">描述   </th><th class="markdownTableHeadCenter">类型    </th></tr>
+<th class="markdownTableHeadCenter">第三方内容   </th><th class="markdownTableHeadCenter">描述   </th><th class="markdownTableHeadCenter">类型   </th><th class="markdownTableHeadCenter">正在使用    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a>   </td><td class="markdownTableBodyCenter">cmake 包管理   </td><td class="markdownTableBodyCenter">cmake module    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a>   </td><td class="markdownTableBodyCenter">cmake 包管理   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/CPMLicenses.cmake">CPMLicences.cmake</a>   </td><td class="markdownTableBodyCenter">为第三方包生成 licence   </td><td class="markdownTableBodyCenter">cmake module    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/CPMLicenses.cmake">CPMLicences.cmake</a>   </td><td class="markdownTableBodyCenter">为第三方包生成 licence   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://github.com/google/googletest">google/googletest</a>   </td><td class="markdownTableBodyCenter">测试   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/google/googletest">google/googletest</a>   </td><td class="markdownTableBodyCenter">测试   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="https://github.com/amrayn/easyloggingpp">easylogingpp</a>   </td><td class="markdownTableBodyCenter">日志   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/amrayn/easyloggingpp">easylogingpp</a>   </td><td class="markdownTableBodyCenter">日志   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://github.com/rttrorg/rttr">rttr</a>   </td><td class="markdownTableBodyCenter">c++ 反射库，在设备驱动部分用   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/rttrorg/rttr">rttr</a>   </td><td class="markdownTableBodyCenter">c++ 反射库，在设备驱动部分用   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/Format.cmake">Format.cmake</a>   </td><td class="markdownTableBodyCenter">代码格式化，支持 clang-format 与 cmake-format   </td><td class="markdownTableBodyCenter">cmake module    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/Format.cmake">Format.cmake</a>   </td><td class="markdownTableBodyCenter">代码格式化，支持 clang-format 与 cmake-format   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="http://freeimage.sourceforge.net/">FreeImage</a>   </td><td class="markdownTableBodyCenter">图片渲染   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="http://freeimage.sourceforge.net/">FreeImage</a>   </td><td class="markdownTableBodyCenter">图片渲染   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="https://www.freetype.org/">Freetype</a>   </td><td class="markdownTableBodyCenter">字体渲染   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://www.freetype.org/">Freetype</a>   </td><td class="markdownTableBodyCenter">字体渲染   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://github.com/riscv-software-src/opensbi">opensbi</a>   </td><td class="markdownTableBodyCenter">riscv 引导   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/riscv-software-src/opensbi">opensbi</a>   </td><td class="markdownTableBodyCenter">riscv 引导   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="https://sourceforge.net/projects/gnu-efi/">gnu-efi</a>   </td><td class="markdownTableBodyCenter">gnu uefi 引导   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://sourceforge.net/projects/gnu-efi/">gnu-efi</a>   </td><td class="markdownTableBodyCenter">gnu uefi 引导   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://gitlab.com/bztsrc/posix-uefi">posix-uefi</a>   </td><td class="markdownTableBodyCenter">posix uefi 引导   </td><td class="markdownTableBodyCenter">库    </td></tr>
+<td class="markdownTableBodyCenter"><a href="SimpleKernel/3rd/ovmf">ovmf</a>   </td><td class="markdownTableBodyCenter">qemu 使用的 uefi 固件   </td><td class="markdownTableBodyCenter">bin   </td><td class="markdownTableBodyCenter">✔    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"><a href="SimpleKernel/3rd/ovmf">ovmf</a>   </td><td class="markdownTableBodyCenter">qemu 使用的 uefi 固件   </td><td class="markdownTableBodyCenter">bin    </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/tianocore/edk2">edk2</a>   </td><td class="markdownTableBodyCenter">构建 qemu 使用的 uefi 固件 ovmf   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><a href="https://github.com/tianocore/edk2">edk2</a>   </td><td class="markdownTableBodyCenter">构建 qemu 使用的 uefi 固件 ovmf   </td><td class="markdownTableBodyCenter">库   </td></tr>
+<td class="markdownTableBodyCenter"><a href="https://github.com/libcxxrt/libcxxrt">libcxxrt</a>   </td><td class="markdownTableBodyCenter">c++ 运行时支持   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔   </td></tr>
 </table>
 <ul>
-<li><p class="startli">[ ] 文档生成</p>
-<p class="startli">doxygen</p><ol type="1">
-<li>使用 doxygen 从注释生成文档</li>
-<li>doxygen 配置文件</li>
-</ol>
+<li><p class="startli">[x] 文档生成</p>
+<p class="startli">使用 doxygen 从注释生成文档</p>
 </li>
 <li><p class="startli">[x] 构建内核</p>
 <p class="startli">生成内核 elf 文件</p>
@@ -185,16 +151,16 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <li><p class="startli">[x] 运行内核</p>
 <p class="startli">在 qemu 上运行内核</p>
 </li>
-<li><p class="startli">[ ] 代码格式化</p>
+<li><p class="startli">[x] 代码格式化</p>
 <p class="startli">格式化全部代码</p>
 </li>
-<li><p class="startli">[ ] 单元测试</p>
-<p class="startli">测试</p>
+<li><p class="startli">[x] 测试</p>
+<p class="startli">单元测试 集成测试 系统测试</p>
 </li>
-<li><p class="startli">[ ] CI</p>
+<li><p class="startli">[x] CI</p>
 <p class="startli">github action、codecov</p>
 </li>
-<li><p class="startli">[ ] 定义项目信息</p>
+<li><p class="startli">[x] 定义项目信息</p>
 <p class="startli">版本号、自动生成头文件</p>
 </li>
 <li><p class="startli">[x] 指定输出目录</p>
@@ -203,71 +169,89 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <li><p class="startli">[x] 调试</p>
 <p class="startli">使用 make debug 等进入调试模式</p>
 </li>
-<li><p class="startli">[ ] 工具链的构建</p>
-<p class="startli">gcc/qemu/docker</p>
-</li>
-<li><p class="startli">[ ] IDE 支持</p>
-<p class="startli">vscode，Clion</p>
-</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md20"></a>
-实现</h1>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 使用</h1>
-<p>根目录 CMakeList.txt 可用参数如下</p>
+<p>安装依赖</p>
+<div class="fragment"><div class="line">sudo apt install --fix-missing -y doxygen graphviz clang-format clang-tidy cppcheck qemu-system lcov gcc g++ gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu gdb-multiarch</div>
+</div><!-- fragment --><p>根目录 CMakeList.txt 可用参数如下</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter">参数   </th><th class="markdownTableHeadCenter">合法值（默认值）   </th><th class="markdownTableHeadCenter">类型   </th><th class="markdownTableHeadCenter">说明    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">ENABLE_BUILD_RELEASE   </td><td class="markdownTableBodyCenter">ON/OFF(OFF)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否为发布版    </td></tr>
+<td class="markdownTableBodyCenter">COVERAGE_OUTPUT_DIR   </td><td class="markdownTableBodyCenter">(coverage)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">测试覆盖率报告保存路径    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">ENABLE_GENERATOR_MAKE   </td><td class="markdownTableBodyCenter">ON/OFF(ON)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否使用 make 构建，OFF 则使用 ninja    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">ENABLE_COMPILER_GNU   </td><td class="markdownTableBodyCenter">ON/OFF(ON)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否使用 gcc，OFF 则使用 clang    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">ENABLE_GNU_EFI   </td><td class="markdownTableBodyCenter">ON/OFF(ON)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否使用 gnu-efi，OFF 则使用 posix-uefi    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">ENABLE_TEST_COVERAGE   </td><td class="markdownTableBodyCenter">ON/OFF(ON)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否开启测试覆盖率    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">ENABLE_GDB   </td><td class="markdownTableBodyCenter">ON/OFF(OFF)   </td><td class="markdownTableBodyCenter">BOOL   </td><td class="markdownTableBodyCenter">是否启用 gdb 调试，为 ON    </td></tr>
-<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">PLATFORM   </td><td class="markdownTableBodyCenter">qemu   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">运行的平台    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">TARGET_ARCH   </td><td class="markdownTableBodyCenter">x86_64, riscv64, aarch64(x86_64)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">目标架构    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">BOOT_ELF_OUTPUT_NAME   </td><td class="markdownTableBodyCenter">(boot.elf)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">引导 elf 文件名    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">BOOT_EFI_OUTPUT_NAME   </td><td class="markdownTableBodyCenter">(boot.efi)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">引导 efi 文件名    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyCenter">KERNEL_ELF_OUTPUT_NAME   </td><td class="markdownTableBodyCenter">(kernel.elf)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">内核 elf 文件名    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter">KERNEL_EFI_OUTPUT_NAME   </td><td class="markdownTableBodyCenter">(kernel.efi)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">内核 efi 文件名    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">QEMU_GDB_PORT   </td><td class="markdownTableBodyCenter">(tcp::1234)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">qemu gdb 调试端口    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyCenter">QEMU_MONITOR_ARG   </td><td class="markdownTableBodyCenter">(telnet::2333,server,nowait)   </td><td class="markdownTableBodyCenter">STR   </td><td class="markdownTableBodyCenter">qemu monitor 设置   </td></tr>
 </table>
-<div class="fragment"><div class="line">cmake \</div>
-<div class="line">  -DTARGET_ARCH=x86_64 \</div>
-<div class="line">  -DTARGET_ARCH=x86_64 \</div>
-<div class="line">  -DBOOT_ELF_OUTPUT_NAME=&quot;myboot.elf&quot; \</div>
-<div class="line">  -DKERNEL_ELF_OUTPUT_NAME=&quot;mykernel.elf&quot; \</div>
-<div class="line">  ..</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md22"></a>
+<p>新建 <code>CMakeUserPresets.json</code>，继承 <code>configurePresets_base</code> ，填写你需要的参数（see <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">cmake-presets</a>）。</p>
+<p>构建系统会自动下载并构建所有第三方依赖，boot，kernel，然后生成 image 文件夹，最后在 qemu 中启动（不同架构的流程有区别）。</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+交叉编译</h2>
+<ol type="1">
+<li>提供 gcc/clang 的支持。</li>
+<li>需要独立的 CMAKE_TOOLCHAIN_FILE 指定编译器。</li>
+<li>gcc 工具链文件的命名规则：host-target-gcc.cmake(本机架构-目标架构-gcc.cmake)</li>
+</ol>
+<p>支持的组合如下：</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">编译平台 host   </th><th class="markdownTableHeadCenter">运行平台 target   </th><th class="markdownTableHeadCenter">gcc   </th><th class="markdownTableHeadCenter">clang   </th><th class="markdownTableHeadCenter">CMAKE_TOOLCHAIN_FILE   </th><th class="markdownTableHeadCenter">NOTE    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">x86_64_elf-gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">gcc 没有 sysroot 支持    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">aarch64-unknown-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">x86_64-osx   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">riscv64-unknown-elf-gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter">x86_64-riscv64-gcc.cmake   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">暂无测试条件    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">暂无测试条件    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">aarch64-osx   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">暂无测试条件    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter">x86_64-x86_64-gcc.cmake   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">aarch64-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">x86_64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">riscv64-linux-gnu-gcc   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter">x86_64-riscv64-gcc.cmake   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">aarch64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TEST   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">x86_64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">aarch64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md12"></a>
 调试</h2>
-<div class="fragment"><div class="line">cmake \</div>
-<div class="line">  -DTARGET_ARCH=x86_64 \</div>
-<div class="line">  -DBOOT_ELF_OUTPUT_NAME=&quot;myboot.elf&quot; \</div>
-<div class="line">  -DKERNEL_ELF_OUTPUT_NAME=&quot;mykernel.elf&quot; \</div>
-<div class="line">  -DENABLE_GDB=ON \</div>
-<div class="line">  ..</div>
+<div class="fragment"><div class="line"># 删除旧文件</div>
+<div class="line">rm -rf build_x86_64</div>
+<div class="line"># 生成</div>
+<div class="line">cmake --preset build_x86_64</div>
+<div class="line"># 编译并运行</div>
+<div class="line">cmake --build build_x86_64 --target run_debug</div>
 </div><!-- fragment --><p>构建系统行为</p>
 <ol type="1">
 <li>编译出带 -g -ggdb 参数的内核</li>
 <li>将 gdbinit 复制到根目录 .gdbinit</li>
-<li>启动 qemu，在 2333 端口开放 telnet，在 1234 端口开放 gdb、</li>
+<li>以 <code>QEMU_GDB_PORT</code> 与 <code>QEMU_MONITOR_ARG</code> 启动 qemu</li>
 <li>等待 gdb 连接</li>
 </ol>
 <p>qemu 进入等待状态后，就可以通过 gdb 连接进行调试了</p>
@@ -279,23 +263,76 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <div class="line">&gt; file ./build_x86_64/bin/boot.elf</div>
 <div class="line"># 运行</div>
 <div class="line">&gt; c</div>
-</div><!-- fragment --><p>更多调试命令请参考 <a href="https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html">gdb 手册</a></p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+</div><!-- fragment --><p>更多调试命令请参考 <a href="https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html">gdb 手册</a>。</p>
+<p>对 efi 文件的调试需要一些准备步骤，参考 <a href="https://wiki.osdev.org/Debugging_UEFI_applications_with_GDB">osdev</a>。</p>
+<h2><a class="anchor" id="autotoc_md13"></a>
 文档生成</h2>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<p>生成文档</p>
+<div class="fragment"><div class="line">cmake --preset=build_x86_64 </div>
+<div class="line">cmake --build build_x86_64 --target doc</div>
+</div><!-- fragment --><p>使用浏览器打开 <code>cmake-kernel/build_x86_64/doc/html/index.html</code> 查看文档。</p>
+<h2><a class="anchor" id="autotoc_md14"></a>
+静态分析</h2>
+<p>使用 clang-tidy 与 cppcheck</p>
+<p>生成文档</p>
+<div class="fragment"><div class="line">cmake --preset=build_x86_64</div>
+<div class="line">cmake --build build_x86_64 --target clang-tidy # 在 build_x86_64 目录下生成 clang_tidy_report.log</div>
+<div class="line">cmake --build build_x86_64 --target clang-format # 格式化代码</div>
+<div class="line">cmake --build build_x86_64 --target cppcheck # 在 build_x86_64 目录下生成 cppcheck_report.log</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
 测试覆盖率</h2>
-<h1><a class="anchor" id="autotoc_md25"></a>
-错误处理</h1>
+<p>只会运行 ut 与 it，在 <code>build_x86_64/COVERAGE_OUTPUT_DIR</code> 目录生成测试覆盖率报告。</p>
+<div class="fragment"><div class="line">cmake --preset=build_x86_64</div>
+<div class="line">cmake --build build_x86_64 --target coverage</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+docker</h2>
+<p>提供了统一的 ubuntu+gcc 编译环境。</p>
+<p>See <a class="el" href="md_docker.html">docker.md</a>。</p>
+<h2><a class="anchor" id="autotoc_md17"></a>
+第三方资源</h2>
+<p>使用 <a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a> 进行管理，下载的源文件会放到 3rd 文件夹下，编译结果会放在 build/_deps 文件夹下。</p>
+<p>对于原生支持 cmake 的项目，可以直接引用。</p>
+<p>不支持的项目需要手动编译。</p>
+<p>目前支持的第三方资源</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">第三方内容   </th><th class="markdownTableHeadCenter">描述   </th><th class="markdownTableHeadCenter">类型   </th><th class="markdownTableHeadCenter">正在使用    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a>   </td><td class="markdownTableBodyCenter">cmake 包管理   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/CPMLicenses.cmake">CPMLicences.cmake</a>   </td><td class="markdownTableBodyCenter">为第三方包生成 licence   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/google/googletest">google/googletest</a>   </td><td class="markdownTableBodyCenter">测试   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://github.com/amrayn/easyloggingpp">easylogingpp</a>   </td><td class="markdownTableBodyCenter">日志   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/rttrorg/rttr">rttr</a>   </td><td class="markdownTableBodyCenter">c++ 反射库，在设备驱动部分用   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://github.com/TheLartians/Format.cmake">Format.cmake</a>   </td><td class="markdownTableBodyCenter">代码格式化，支持 clang-format 与 cmake-format   </td><td class="markdownTableBodyCenter">cmake module   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="http://freeimage.sourceforge.net/">FreeImage</a>   </td><td class="markdownTableBodyCenter">图片渲染   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://www.freetype.org/">Freetype</a>   </td><td class="markdownTableBodyCenter">字体渲染   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/riscv-software-src/opensbi">opensbi</a>   </td><td class="markdownTableBodyCenter">riscv 引导   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://sourceforge.net/projects/gnu-efi/">gnu-efi</a>   </td><td class="markdownTableBodyCenter">gnu uefi 引导   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="SimpleKernel/3rd/ovmf">ovmf</a>   </td><td class="markdownTableBodyCenter">qemu 使用的 uefi 固件   </td><td class="markdownTableBodyCenter">bin   </td><td class="markdownTableBodyCenter">✔    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter"><a href="https://github.com/tianocore/edk2">edk2</a>   </td><td class="markdownTableBodyCenter">构建 qemu 使用的 uefi 固件 ovmf   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter"><a href="https://github.com/libcxxrt/libcxxrt">libcxxrt</a>   </td><td class="markdownTableBodyCenter">c++ 运行时支持   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md18"></a>
+已知问题</h1>
 <ul>
 <li><p class="startli">gdbinit</p>
 <p class="startli">```shell To enable execution of this file add add-auto-load-safe-path /home/nzh_ubuntu/GitHub/cmake-kernel/.gdbinit line to your configuration file "/home/yourusername/.config/gdb/gdbinit". To completely disable this security protection add set auto-load safe-path / line to your configuration file "/home/yourusername/.config/gdb/gdbinit". For more information about this security protection see the "Auto-loading safe path" section in the GDB manual. E.g., run from the shell: info "(gdb)Auto-loading safe path" ```</p>
 <p class="startli">在你的用户目录下找到 <code>/home/nzh_ubuntu/.config/gdb/gdbinit</code>(没有则新建)，将这一句加进去</p>
 <p class="startli">```shell add-auto-load-safe-path /home/yourusername/pathtocmakekernel/cmake-kernel/.gdbinit ```</p>
 </li>
-<li>ss</li>
-<li>124</li>
-<li>5435</li>
-<li>sfsf </li>
+<li>TODO </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -303,7 +340,7 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Sep 9 2023 12:48:54 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Sep 9 2023 15:58:26 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
