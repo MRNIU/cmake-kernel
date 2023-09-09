@@ -6,8 +6,8 @@
 
 # 设置项目名与版本
 project(
-        doc
-        VERSION 0.0.1
+    doc
+    VERSION 0.0.1
 )
 
 # 设置 doxygen 相关参数
@@ -39,7 +39,7 @@ set(DOXYGEN_HTML_TIMESTAMP YES)
 
 # 创建 target 并通过 VERBATIM 将 cmake 参数传递给 doxygen
 doxygen_add_docs(doc
-        COMMENT "Generating docs at ${PROJECT_SOURCE_DIR}/html/index.html ..."
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        ${CMAKE_SOURCE_DIR}
+    COMMENT "Generating docs at ${PROJECT_SOURCE_DIR}/html/index.html ..."
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}
 )

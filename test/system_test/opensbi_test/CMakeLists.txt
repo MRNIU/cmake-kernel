@@ -6,40 +6,40 @@
 
 # 设置项目名与版本
 project(
-        opensbi-test
-        VERSION 0.0.1
+    opensbi-test
+    VERSION 0.0.1
 )
 
 enable_language(ASM)
 enable_language(CXX)
 
 add_executable(${PROJECT_NAME}_kernel.elf
-        boot.cpp
-        ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/boot.S
+    boot.cpp
+    ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/boot.S
 )
 
 add_header_3rd(${PROJECT_NAME}_kernel.elf)
 
 target_compile_options(${PROJECT_NAME}_kernel.elf PRIVATE
-        -g -ggdb
-        -O0
-        -Wall -Wextra
-        -ffreestanding
+    -g -ggdb
+    -O0
+    -Wall -Wextra
+    -ffreestanding
 )
 
 target_link_options(${PROJECT_NAME}_kernel.elf PRIVATE
-        -no-pie
-        -nostdlib
-        -T ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/link.ld
+    -no-pie
+    -nostdlib
+    -T ${CMAKE_SOURCE_DIR}/src/kernel/arch/${TARGET_ARCH}/link.ld
 )
 
 target_compile_options(cxxrt-static PRIVATE
-        -fPIC
+    -fPIC
 )
 
 add_dependencies(${PROJECT_NAME}_kernel.elf
-        opensbi
-        cxxrt-static
+    opensbi
+    cxxrt-static
 )
 
 readelf_a(${PROJECT_NAME}_kernel.elf)
