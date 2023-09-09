@@ -179,21 +179,24 @@ auto Elf::load_kernel_image() const -> uint64_t {
 }
 
 auto Elf::load() const -> uintptr_t {
-  uintptr_t image_base = 0xC0000000;
-
+  // 记录 AllocatePages 分配出的物理地址
+  uintptr_t image_base = 0;
+  // 计算需要的内存页
   auto section_page_count = EFI_SIZE_TO_PAGES(elf_file_size);
-  debug << L"AllocatePages section_page_count: " << section_page_count
-        << L" image_base: " << ostream::hex_X << image_base << ostream::endl;
+  //  将整个 elf 文件映射到内存，方便后续读取
   auto status =
-      uefi_call_wrapper(gBS->AllocatePages, 4, AllocateAddress, EfiLoaderCode,
+      uefi_call_wrapper(gBS->AllocatePages, 4, AllocateAnyPages, EfiLoaderCode,
                         section_page_count, &image_base);
   if (EFI_ERROR(status)) {
     debug << L"AllocatePages failed: " << status << ostream::endl;
     throw std::runtime_error("EFI_ERROR(status)");
   }
+  // 将 elf 复制到分配的物理内存中
+  std::memcpy(reinterpret_cast<void *>(image_base), file.data(),
+              section_page_count * EFI_PAGE_SIZE);
 
-  memcpy((void *)(image_base), file.data(), section_page_count * 4096);
-
+  debug << L"AllocatePages section_page_count: " << section_page_count
+        << L" image_base: " << ostream::hex_X << image_base << ostream::endl;
   return image_base + ehdr.e_entry;
 }
 

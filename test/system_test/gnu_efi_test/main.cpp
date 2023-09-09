@@ -16,21 +16,14 @@
 
 #include "kernel.h"
 
+extern "C" void _start() { main(0, nullptr); }
+
 int main(int _argc, char **_argv) {
   (void)_argc;
   (void)_argv;
-
   // 进入死循环
   while (true) {
     ;
   }
   return 0;
-}
-
-extern "C" void _start() {
-  main(0, nullptr);
-  // 进入死循环
-  while (true) {
-    ;
-  }
 }

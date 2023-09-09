@@ -39,10 +39,17 @@ add_dependencies(${PROJECT_NAME}_boot.elf
         ${COMPILE_DEPENDS}
 )
 
+# readelf -a
+readelf_a(${PROJECT_NAME}_boot.elf)
+
+# objdump -D
+objdump_D(${PROJECT_NAME}_boot.elf)
+
+# @todo use elf2efi
 add_custom_target(${PROJECT_NAME}_boot.efi DEPENDS ${PROJECT_NAME}_boot.elf)
 add_custom_command(TARGET ${PROJECT_NAME}_boot.efi
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-        COMMAND ${CMAKE_OBJCOPY} ${PROJECT_NAME}_boot.elf ${PROJECT_NAME}_boot.efi
+        COMMAND ${CMAKE_OBJCOPY} $<TARGET_FILE:${PROJECT_NAME}_boot.elf> ${PROJECT_NAME}_boot.efi
         -S
         -R .comment
         -R .note.gnu.build-id
@@ -66,10 +73,12 @@ target_link_options(${PROJECT_NAME}_kernel.elf PRIVATE
         ${DEFAULT_KERNEL_LINK_OPTIONS}
 )
 
-add_custom_command(TARGET ${PROJECT_NAME}_kernel.elf POST_BUILD
-        COMMENT "Move kernel to 0xC0000000"
-        COMMAND ${CMAKE_OBJCOPY} --adjust-vma 0xC0000000 ${PROJECT_NAME}_kernel.elf
-)
+# readelf -a
+readelf_a(${PROJECT_NAME}_kernel.elf)
+
+# objdump -D
+objdump_D(${PROJECT_NAME}_kernel.elf)
+
 
 add_custom_target(${PROJECT_NAME}_run DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf)
 add_custom_command(TARGET ${PROJECT_NAME}_run
