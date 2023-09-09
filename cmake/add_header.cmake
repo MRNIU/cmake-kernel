@@ -38,16 +38,16 @@ function (add_header_driver _target)
 endfunction ()
 
 function (add_header_3rd _target)
-    if(${TARGET_ARCH} STREQUAL "x86_64")
+    if (${TARGET_ARCH} STREQUAL "x86_64")
         target_include_directories(${_target} PRIVATE
             ${gnu-efi_BINARY_DIR}/inc)
         target_include_directories(${_target} PRIVATE
             ${gnu-efi_BINARY_DIR}/inc/${TARGET_ARCH})
         target_include_directories(${_target} PRIVATE
             ${gnu-efi_BINARY_DIR}/inc/protocol)
-    elseif(${TARGET_ARCH} STREQUAL "riscv64")
+    elseif (${TARGET_ARCH} STREQUAL "riscv64")
         target_include_directories(${_target} PRIVATE
             ${opensbi_BINARY_DIR}/include)
-    elseif(${TARGET_ARCH} STREQUAL "aarch64")
-    endif()
+    elseif (${TARGET_ARCH} STREQUAL "aarch64")
+    endif ()
 endfunction ()

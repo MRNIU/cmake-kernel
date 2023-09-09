@@ -10,16 +10,16 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
 # @todo mac 测试
-if(APPLE)
+if (APPLE)
     message(STATUS "Now is Apple system.")
     # GCC
     find_program(Compiler_gcc x86_64-elf-g++)
-    if(NOT Compiler_gcc)
+    if (NOT Compiler_gcc)
         message(FATAL_ERROR "x86_64-elf-g++ not found.\n"
             "Run `brew install x86_64-elf-g++` to install.")
-    else()
+    else ()
         message(STATUS "Found x86_64-elf-g++ ${Compiler_gcc}")
-    endif()
+    endif ()
 
     set(TOOLCHAIN_PREFIX x86_64-elf-)
     set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}gcc)
@@ -34,14 +34,14 @@ if(APPLE)
     # 跳过编译器检查
     set(CMAKE_C_COMPILER_FORCED TRUE)
     set(CMAKE_CXX_COMPILER_FORCED TRUE)
-elseif(UNIX)
+elseif (UNIX)
     message(STATUS "Now is UNIX-like OS's.")
     # GCC
     find_program(Compiler_gcc g++)
-    if(NOT Compiler_gcc)
+    if (NOT Compiler_gcc)
         message(FATAL_ERROR "g++ not found.\n"
             "Run `sudo apt-get install -y gcc g++` to install.")
-    else()
+    else ()
         message(STATUS "Found g++ ${Compiler_gcc}")
-    endif()
-endif()
+    endif ()
+endif ()

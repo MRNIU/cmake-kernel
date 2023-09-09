@@ -13,13 +13,13 @@ set(CPM_USE_LOCAL_PACKAGES True)
 # -------- get_cpm.cmake --------
 set(CPM_DOWNLOAD_VERSION 0.38.2)
 
-if(CPM_SOURCE_CACHE)
+if (CPM_SOURCE_CACHE)
     set(CPM_DOWNLOAD_LOCATION "${CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
-elseif(DEFINED ENV{CPM_SOURCE_CACHE})
+elseif (DEFINED ENV{CPM_SOURCE_CACHE})
     set(CPM_DOWNLOAD_LOCATION "$ENV{CPM_SOURCE_CACHE}/cpm/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
-else()
+else ()
     set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM_${CPM_DOWNLOAD_VERSION}.cmake")
-endif()
+endif ()
 
 # Expand relative path. This is important if the provided path contains a tilde (~)
 get_filename_component(CPM_DOWNLOAD_LOCATION ${CPM_DOWNLOAD_LOCATION} ABSOLUTE)
@@ -32,16 +32,16 @@ function (download_cpm)
     )
 endfunction ()
 
-if(NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
+if (NOT (EXISTS ${CPM_DOWNLOAD_LOCATION}))
     download_cpm()
-else()
+else ()
     # resume download if it previously failed
     file(READ ${CPM_DOWNLOAD_LOCATION} check)
-    if("${check}" STREQUAL "")
+    if ("${check}" STREQUAL "")
         download_cpm()
-    endif()
+    endif ()
     unset(check)
-endif()
+endif ()
 
 include(${CPM_DOWNLOAD_LOCATION})
 # -------- get_cpm.cmake --------
@@ -104,7 +104,7 @@ CPMAddPackage(
 #   add_library(Freetype::Freetype ALIAS freetype)
 # endif()
 
-if(${TARGET_ARCH} STREQUAL "riscv64")
+if (${TARGET_ARCH} STREQUAL "riscv64")
     # https://github.com/riscv-software-src/opensbi
     CPMAddPackage(
         NAME opensbi
@@ -113,7 +113,7 @@ if(${TARGET_ARCH} STREQUAL "riscv64")
         VERSION 1.3
         DOWNLOAD_ONLY True
     )
-    if(opensbi_ADDED)
+    if (opensbi_ADDED)
         # 编译 opensbi
         add_custom_target(opensbi
             COMMENT "build opensbi..."
@@ -140,10 +140,10 @@ if(${TARGET_ARCH} STREQUAL "riscv64")
             ${opensbi_SOURCE_DIR}/include
             ${opensbi_BINARY_DIR}/include
         )
-    endif()
-endif()
+    endif ()
+endif ()
 
-if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
+if (${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
     # https://sourceforge.net/projects/gnu-efi/
     CPMAddPackage(
         NAME gnu-efi
@@ -151,7 +151,7 @@ if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
         VERSION 3.0.17
         DOWNLOAD_ONLY True
     )
-    if(gnu-efi_ADDED)
+    if (gnu-efi_ADDED)
         # 编译 gnu-efi
         add_custom_target(gnu-efi
             COMMENT "build gnu-efi..."
@@ -177,7 +177,7 @@ if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
             ${gnu-efi_SOURCE_DIR}/inc
             ${gnu-efi_BINARY_DIR}/inc
         )
-    endif()
+    endif ()
 
     # ovmf
     # @todo 使用互联网连接或从 edk2 编译
@@ -185,7 +185,7 @@ if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
         NAME ovmf
         SOURCE_DIR ${PROJECT_SOURCE_DIR}/tools/ovmf
     )
-    if(ovmf_ADDED)
+    if (ovmf_ADDED)
         add_custom_target(ovmf
             COMMENT "build ovmf ..."
             # make 时编译
@@ -198,7 +198,7 @@ if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
             ${ovmf_SOURCE_DIR}/*
             ${ovmf_BINARY_DIR}
         )
-    endif()
+    endif ()
 
     # # https://github.com/tianocore/edk2
     # # @todo 下载下来的文件为 makefile 形式，需要自己编译
@@ -208,7 +208,7 @@ if(${TARGET_ARCH} STREQUAL "x86_64" OR ${TARGET_ARCH} STREQUAL "aarch64")
     #   GIT_TAG edk2-stable202305
     #   DOWNLOAD_ONLY True
     # )
-endif()
+endif ()
 
 # https://github.com/gdbinit/Gdbinit
 CPMAddPackage(
@@ -217,7 +217,7 @@ CPMAddPackage(
     GIT_TAG e5138c24226bdd05360ca41743d8315a9e366c40
     DOWNLOAD_ONLY True
 )
-if(gdbinit_ADDED)
+if (gdbinit_ADDED)
     add_custom_target(gdbinit
         COMMENT "Generate gdbinit ..."
         WORKING_DIRECTORY ${gdbinit_SOURCE_DIR}
@@ -235,7 +235,7 @@ if(gdbinit_ADDED)
         COMMAND
         echo "add-symbol-file ${${BOOT_ELF_OUTPUT_NAME}_BINARY_DIR}/${BOOT_ELF_OUTPUT_NAME}" >> ${CMAKE_SOURCE_DIR}/.gdbinit
     )
-endif()
+endif ()
 
 # https://github.com/libcxxrt/libcxxrt
 CPMAddPackage(
@@ -254,11 +254,11 @@ CPMAddPackage(
     GITHUB_REPOSITORY cpm-cmake/CPMLicenses.cmake
     VERSION 0.0.7
 )
-if(CPMLicenses.cmake_ADDED)
+if (CPMLicenses.cmake_ADDED)
     cpm_licenses_create_disclaimer_target(
         write-licenses "${CMAKE_CURRENT_SOURCE_DIR}/3rd/LICENSE" "${CPM_PACKAGES}"
     )
-endif()
+endif ()
 # make 时自动在 3rd 文件夹下生成 LICENSE 文件
 add_custom_target(3rd_licenses
     ALL
@@ -269,25 +269,25 @@ add_custom_target(3rd_licenses
 
 # qemu
 find_program(QEMU_EXE qemu-system-${TARGET_ARCH})
-if(NOT QEMU_EXE)
+if (NOT QEMU_EXE)
     message(FATAL_ERROR "qemu-system-${TARGET_ARCH} not found.\n"
         "Following https://www.qemu.org/ to install.")
-endif()
+endif ()
 
 # doxygen
 find_package(Doxygen
     REQUIRED dot)
-if(NOT DOXYGEN_FOUND)
+if (NOT DOXYGEN_FOUND)
     message(FATAL_ERROR "Doxygen not found.\n"
         "Following https://www.doxygen.nl/index.html to install.")
-endif()
+endif ()
 
 # cppcheck
 find_program(CPPCHECK_EXE NAMES cppcheck)
-if(NOT CPPCHECK_EXE)
+if (NOT CPPCHECK_EXE)
     message(FATAL_ERROR "cppcheck not found.\n"
         "Following https://cppcheck.sourceforge.io to install.")
-endif()
+endif ()
 add_custom_target(cppcheck
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Run cppcheck on ${CMAKE_BINARY_DIR}/compile_commands.json ..."
@@ -313,10 +313,10 @@ file(GLOB_RECURSE ALL_SOURCE_FILES
 
 # clang-tidy
 find_program(CLANG_TIDY_EXE NAMES clang-tidy)
-if(NOT CLANG_TIDY_EXE)
+if (NOT CLANG_TIDY_EXE)
     message(FATAL_ERROR "clang-tidy not found.\n"
         "Following https://clang.llvm.org/extra/clang-tidy to install.")
-endif()
+endif ()
 add_custom_target(clang-tidy
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Run clang-tidy on ${ALL_SOURCE_FILES} ..."
@@ -330,10 +330,10 @@ add_custom_target(clang-tidy
 
 # clang-format
 find_program(CLANG_FORMAT_EXE NAMES clang-format)
-if(NOT CLANG_FORMAT_EXE)
+if (NOT CLANG_FORMAT_EXE)
     message(FATAL_ERROR "clang-format not found.\n"
         "Following https://clang.llvm.org/docs/ClangFormat.html to install.")
-endif()
+endif ()
 add_custom_target(clang-format
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Run clang-format on ${ALL_SOURCE_FILES} ..."
@@ -342,14 +342,14 @@ add_custom_target(clang-format
 
 # genhtml 生成测试覆盖率报告网页
 find_program(GENHTML_EXE genhtml)
-if(NOT GENHTML_EXE)
+if (NOT GENHTML_EXE)
     message(FATAL_ERROR "genhtml not found.\n"
         "Following https://github.com/linux-test-project/lcov to install.")
-endif()
+endif ()
 
 # lcov 生成测试覆盖率报告
 find_program(LCOV_EXE lcov)
-if(NOT LCOV_EXE)
+if (NOT LCOV_EXE)
     message(FATAL_ERROR "lcov not found.\n"
         "Following https://github.com/linux-test-project/lcov to install.")
-endif()
+endif ()

@@ -67,9 +67,9 @@ function (add_coverage_target)
 
     # 不检查的目录
     list(APPEND EXCLUDES --exclude)
-    foreach(_item ${ARG_EXCLUDE_DIR})
+    foreach (_item ${ARG_EXCLUDE_DIR})
         list(APPEND EXCLUDES '${_item}')
-    endforeach()
+    endforeach ()
 
     # 添加 target
     add_custom_target(coverage DEPENDS ${ARG_DEPENDS}
@@ -109,17 +109,17 @@ function (add_run_target)
     list(APPEND commands
         COMMAND ${CMAKE_COMMAND} -E copy ${ARG_KERNEL} image/
     )
-    if(${ARG_TARGET} STREQUAL "x86_64")
+    if (${ARG_TARGET} STREQUAL "x86_64")
         list(APPEND commands
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
         )
-    elseif(${ARG_TARGET} STREQUAL "aarch64")
+    elseif (${ARG_TARGET} STREQUAL "aarch64")
         list(APPEND commands
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
         )
-    endif()
+    endif ()
 
     # 添加 target
     add_custom_target(${ARG_NAME}_run DEPENDS ${ARG_DEPENDS}

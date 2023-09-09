@@ -157,17 +157,17 @@ list(APPEND DEFAULT_KERNEL_LINK_LIB
 )
 
 # 编译依赖
-if(${TARGET_ARCH} STREQUAL "x86_64")
+if (${TARGET_ARCH} STREQUAL "x86_64")
     list(APPEND COMPILE_DEPENDS
         gnu-efi
         cxxrt-static
     )
-elseif(${TARGET_ARCH} STREQUAL "riscv64")
+elseif (${TARGET_ARCH} STREQUAL "riscv64")
     list(APPEND COMPILE_DEPENDS
         opensbi
     )
-elseif(${TARGET_ARCH} STREQUAL "aarch64")
+elseif (${TARGET_ARCH} STREQUAL "aarch64")
     list(APPEND COMPILE_DEPENDS
         gnu-efi
     )
-endif()
+endif ()

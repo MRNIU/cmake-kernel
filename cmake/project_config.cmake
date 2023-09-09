@@ -29,48 +29,48 @@ set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
 
 # 要运行的平台
 list(APPEND VALID_PLATFORM qemu)
-if(NOT DEFINED PLATFORM)
+if (NOT DEFINED PLATFORM)
     set(PLATFORM qemu)
-endif()
+endif ()
 message(STATUS "PLATFORM is: ${PLATFORM}")
 # 如果不合法则报错
-if(NOT PLATFORM IN_LIST VALID_PLATFORM)
+if (NOT PLATFORM IN_LIST VALID_PLATFORM)
     message(FATAL_ERROR "PLATFORM must be one of ${VALID_PLATFORM}")
-endif()
+endif ()
 
 # 目标架构
 list(APPEND VALID_TARGET_ARCH x86_64 riscv64 aarch64)
 # 默认构建 x86_64
-if(NOT DEFINED TARGET_ARCH)
+if (NOT DEFINED TARGET_ARCH)
     set(TARGET_ARCH x86_64)
-endif()
+endif ()
 message(STATUS "TARGET_ARCH is: ${TARGET_ARCH}")
 # 如果不合法则报错
-if(NOT TARGET_ARCH IN_LIST VALID_TARGET_ARCH)
+if (NOT TARGET_ARCH IN_LIST VALID_TARGET_ARCH)
     message(FATAL_ERROR "TARGET_ARCH must be one of ${VALID_TARGET_ARCH}")
-endif()
+endif ()
 
 message(STATUS "CMAKE_TOOLCHAIN_FILE is: ${CMAKE_TOOLCHAIN_FILE}")
 # 编译器只支持 gnu-gcc 或 clang
-if(NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU" OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
+if (NOT ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU" OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
     message(FATAL_ERROR "Only support gnu-gcc/clang")
-endif()
+endif ()
 
 # qemu 运行依赖
-if(${TARGET_ARCH} STREQUAL "x86_64")
+if (${TARGET_ARCH} STREQUAL "x86_64")
     list(APPEND RUN_DEPENDS
         ovmf
     )
-elseif(${TARGET_ARCH} STREQUAL "riscv64")
+elseif (${TARGET_ARCH} STREQUAL "riscv64")
     list(APPEND RUN_DEPENDS
         opensbi
         $<TARGET_FILE:kernel>
     )
-elseif(${TARGET_ARCH} STREQUAL "aarch64")
+elseif (${TARGET_ARCH} STREQUAL "aarch64")
     list(APPEND RUN_DEPENDS
         ovmf
     )
-endif()
+endif ()
 
 # qemu 调试依赖
 list(APPEND DEBUG_DEPENDS
@@ -79,13 +79,13 @@ list(APPEND DEBUG_DEPENDS
 )
 
 # qemu gdb 调试端口
-if(NOT DEFINED QEMU_GDB_PORT)
+if (NOT DEFINED QEMU_GDB_PORT)
     set(QEMU_GDB_PORT tcp::1234)
-endif()
+endif ()
 
 # qemu monitor 参数
-if(NOT DEFINED QEMU_MONITOR_ARG)
+if (NOT DEFINED QEMU_MONITOR_ARG)
     set(QEMU_MONITOR_ARG
         telnet::2333,server,nowait
     )
-endif()
+endif ()
