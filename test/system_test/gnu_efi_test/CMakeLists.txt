@@ -75,7 +75,6 @@ add_run_target(NAME ${PROJECT_NAME}
     TARGET ${TARGET_ARCH}
     BOOT ${PROJECT_NAME}_boot.efi
     KERNEL $<TARGET_FILE:${PROJECT_NAME}_kernel.elf>
-    STARTUP ${CMAKE_SOURCE_DIR}/tools/startup.nsh
     QEMU_FLAGS
     -m 128M
     -net none

@@ -76,8 +76,7 @@ add_run_target(NAME run
     DEPENDS $<$<STREQUAL:${TARGET_ARCH},x86_64>:boot> kernel ${RUN_DEPENDS} ${DEBUG_DEPENDS}
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
     TARGET ${TARGET_ARCH}
-    BOOT $<$<STREQUAL:${TARGET_ARCH},x86_64>:${PROJECT_BINARY_DIR}/src/boot/boot.efi>
+    BOOT ${PROJECT_BINARY_DIR}/src/boot/boot.efi
     KERNEL $<TARGET_FILE:kernel>
-    STARTUP $<$<STREQUAL:${TARGET_ARCH},x86_64>:${PROJECT_SOURCE_DIR}/tools/startup.nsh>
     QEMU_FLAGS ${QEMU_FLAGS}
 )

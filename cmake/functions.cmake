@@ -97,10 +97,17 @@ function (add_coverage_target)
 endfunction ()
 
 # 添加运行 qemu target
+# NAME 生成的 target 前缀
+# TARGET 目标架构
+# WORKING_DIRECTORY 工作目录
+# BOOT boot 文件路径
+# KERNEL kernel 文件路径
+# DEPENDS 依赖的 target
+# QEMU_FLAGS qemu 参数
 function (add_run_target)
     # 解析参数
     set(options)
-    set(one_value_keywords NAME TARGET WORKING_DIRECTORY BOOT KERNEL STARTUP)
+    set(one_value_keywords NAME TARGET WORKING_DIRECTORY BOOT KERNEL)
     set(multi_value_keywords DEPENDS QEMU_FLAGS)
     cmake_parse_arguments(
         ARG "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN}
@@ -110,14 +117,16 @@ function (add_run_target)
         COMMAND ${CMAKE_COMMAND} -E copy ${ARG_KERNEL} image/
     )
     if (${ARG_TARGET} STREQUAL "x86_64")
+        get_filename_component(BOOT_FILE_NAME ${ARG_BOOT} NAME)
+        configure_file(${CMAKE_SOURCE_DIR}/tools/startup.nsh.in image/startup.nsh @ONLY)
         list(APPEND commands
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
-            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
         )
     elseif (${ARG_TARGET} STREQUAL "aarch64")
+        get_filename_component(BOOT_FILE_NAME ${ARG_BOOT} NAME)
+        configure_file(${CMAKE_SOURCE_DIR}/tools/startup.nsh.in image/startup.nsh @ONLY)
         list(APPEND commands
             COMMAND ${CMAKE_COMMAND} -E copy ${ARG_BOOT} image/
-            COMMAND ${CMAKE_COMMAND} -E copy ${ARG_STARTUP} image/
         )
     endif ()
 
