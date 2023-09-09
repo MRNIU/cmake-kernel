@@ -70,7 +70,7 @@ endfunction ()
 # SOURCE_DIR 源码路径
 # BINARY_DIR 二进制文件路径
 # EXCLUDE_DIR 要排除的目录
-function (add_coverage)
+function (add_coverage_target)
     # 解析参数
     set(options)
     set(one_value_keywords SOURCE_DIR BINARY_DIR)

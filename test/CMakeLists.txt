@@ -39,7 +39,7 @@ if(TARGET_ARCH STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/unit_test)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/integration_test)
 
-    add_coverage(
+    add_coverage_target(
             DEPENDS unit_test integration_test
             SOURCE_DIR ${CMAKE_SOURCE_DIR}
             BINARY_DIR ${CMAKE_BINARY_DIR}
