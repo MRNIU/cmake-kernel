@@ -49,6 +49,18 @@
           "type": "STRING",
           "value": "coverage"
         },
+        "PLATFORM": {
+          "type": "STRING",
+          "value": "qemu"
+        },
+        "QEMU_GDB_PORT": {
+          "type": "STRING",
+          "value": "tcp::1234"
+        },
+        "QEMU_MONITOR_ARG": {
+          "type": "STRING",
+          "value": "telnet::2333,server,nowait"
+        },
         "BOOT_ELF_OUTPUT_NAME": {
           "type": "STRING",
           "value": "boot.elf"

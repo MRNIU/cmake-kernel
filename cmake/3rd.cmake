@@ -296,7 +296,7 @@ add_custom_target(cppcheck
     --enable=all
     --project=${CMAKE_BINARY_DIR}/compile_commands.json
     --suppress-xml=${CMAKE_SOURCE_DIR}/tools/cppcheck-suppressions.xml
-    --output-file=${CMAKE_BINARY_DIR}/cppcheck_report.txt
+    --output-file=${CMAKE_BINARY_DIR}/cppcheck_report.log
 )
 
 # 获取全部源文件

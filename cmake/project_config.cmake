@@ -21,8 +21,6 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 # 设置清理目标 在 make clean 时删除文件夹
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
-    # 清除缓存
-    ${PROJECT_BINARY_DIR}/CMakeCache.txt
     # 删除 .gdbinit
     ${CMAKE_SOURCE_DIR}/.gdbinit
 )
