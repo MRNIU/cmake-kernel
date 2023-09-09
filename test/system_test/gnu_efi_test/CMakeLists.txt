@@ -20,6 +20,7 @@ add_executable(${PROJECT_NAME}_boot.elf
     ${CMAKE_SOURCE_DIR}/src/boot/memory.cpp
 )
 
+add_header_project(${PROJECT_NAME}_boot.elf)
 add_header_boot(${PROJECT_NAME}_boot.elf)
 add_header_3rd(${PROJECT_NAME}_boot.elf)
 

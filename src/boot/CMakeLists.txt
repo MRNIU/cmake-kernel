@@ -21,6 +21,7 @@ add_executable(boot
 )
 
 # 添加头文件
+add_header_project(boot)
 add_header_boot(boot)
 add_header_3rd(boot)
 

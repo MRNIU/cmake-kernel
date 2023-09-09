@@ -19,8 +19,7 @@
 
 #include "load_elf.h"
 #include "ostream.hpp"
-
-#define KERNEL_EXECUTABLE_PATH (wchar_t *)L"gnu-efi-test_kernel.elf"
+#include "project_config.h"
 
 uintptr_t ImageBase = 0;
 
@@ -75,7 +74,7 @@ efi_main(EFI_HANDLE _image_handle,
     auto memory = Memory();
     memory.print_info();
     // 加载内核
-    auto elf = Elf(KERNEL_EXECUTABLE_PATH);
+    auto elf = Elf(KERNEL_NAME);
     //    kernel_addr = elf.load_kernel_image();
     kernel_addr = elf.load();
   } catch (const std::exception &_e) {
