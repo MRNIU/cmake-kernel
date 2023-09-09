@@ -68,8 +68,7 @@ readelf_a(${PROJECT_NAME}_kernel.elf)
 # objdump -D
 objdump_D(${PROJECT_NAME}_kernel.elf)
 
-
-add_custom_target(${PROJECT_NAME}_run DEPENDS ${PROJECT_NAME}_boot.efi ${PROJECT_NAME}_kernel.elf ovmf)
+add_custom_target(${PROJECT_NAME}_run DEPENDS ${PROJECT_NAME}_boot.elf ${PROJECT_NAME}_kernel.elf ovmf)
 add_custom_command(TARGET ${PROJECT_NAME}_run
         COMMENT "Run ${PROJECT_NAME} in qemu."
         COMMAND mkdir -p ./image
