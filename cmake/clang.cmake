@@ -10,19 +10,19 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
 # @todo mac 测试
-if (APPLE)
+if(APPLE)
     message(STATUS "Now is Apple systens.")
     # @todo
-elseif (UNIX)
+elseif(UNIX)
     message(STATUS "Now is UNIX-like OS's.")
     # clang
     find_program(Compiler_clang++ clang++)
-    if (NOT Compiler_clang++)
+    if(NOT Compiler_clang++)
         message(FATAL_ERROR "clang++ not found.\n"
                 "Run `sudo apt-get install -y clang clang++` to install.")
-    else ()
+    else()
         message(STATUS "Found clang++ ${Compiler_clang++}")
-    endif ()
+    endif()
 
     set(CMAKE_C_COMPILER clang)
     set(CMAKE_CXX_COMPILER clang++)
@@ -35,10 +35,10 @@ elseif (UNIX)
 
     # qemu
     find_program(QEMU qemu-system-x86_64)
-    if (NOT QEMU)
+    if(NOT QEMU)
         message(FATAL_ERROR "qemu not found.\n"
                 "Run `sudo apt-get install -y qemu-system` to install.")
-    else ()
+    else()
         message(STATUS "Found qemu ${QEMU}")
-    endif ()
-endif ()
+    endif()
+endif()

@@ -13,7 +13,7 @@ project(
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/system_test)
 
 # 仅在 host 环境下进行 ut 和 it
-if (TARGET_ARCH STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR)
+if(TARGET_ARCH STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR)
     enable_testing()
     include(GoogleTest)
 
@@ -45,4 +45,4 @@ if (TARGET_ARCH STREQUAL CMAKE_HOST_SYSTEM_PROCESSOR)
             BINARY_DIR ${CMAKE_BINARY_DIR}
             EXCLUDE_DIR ${CMAKE_SOURCE_DIR}/3rd/*
     )
-endif ()
+endif()
