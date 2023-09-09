@@ -45,19 +45,8 @@ readelf_a(${PROJECT_NAME}_boot.elf)
 # objdump -D
 objdump_D(${PROJECT_NAME}_boot.elf)
 
-# @todo use elf2efi
-add_custom_target(${PROJECT_NAME}_boot.efi DEPENDS ${PROJECT_NAME}_boot.elf)
-add_custom_command(TARGET ${PROJECT_NAME}_boot.efi
-        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-        COMMAND ${CMAKE_OBJCOPY} $<TARGET_FILE:${PROJECT_NAME}_boot.elf> ${PROJECT_NAME}_boot.efi
-        -S
-        -R .comment
-        -R .note.gnu.build-id
-        -R .gnu.hash
-        -R .dynsym
-        --target=efi-app-${TARGET_ARCH} --subsystem=10
-        COMMENT "Build ${PROJECT_NAME}_boot.efi done."
-)
+# 生成 efi
+elf2efi(${PROJECT_NAME}_boot.elf ${PROJECT_NAME}_boot.efi)
 
 add_executable(${PROJECT_NAME}_kernel.elf
         main.cpp

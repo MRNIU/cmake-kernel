@@ -42,9 +42,11 @@ function(elf2efi _target _efi)
             DEPENDS ${_target}
             WORKING_DIRECTORY ${${_target}_BINARY_DIR}
             COMMAND ${CMAKE_OBJCOPY} $<TARGET_FILE:${_target}> ${_efi}
-            -g -R .comment -R .gnu_debuglink -R .note.gnu.build-id
-            -R .gnu.hash -R .plt -R .rela.plt -R .dynstr -R .dynsym -R .rela.dyn
-            -S -R .eh_frame -R .gcc_except_table -R .hash
+            -S
+            -R .comment
+            -R .note.gnu.build-id
+            -R .gnu.hash
+            -R .dynsym
             --target=efi-app-${TARGET_ARCH} --subsystem=10
     )
 endfunction()
