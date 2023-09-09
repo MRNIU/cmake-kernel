@@ -1,6 +1,7 @@
 # cmake-kernel
 
 [![codecov](https://codecov.io/gh/MRNIU/cmake-kernel/graph/badge.svg?token=J7NKK3SBNJ)](https://codecov.io/gh/MRNIU/cmake-kernel)
+![workflow](https://github.com/MRNIU/cmake-kernel/actions/workflows/workflow.yml/badge.svg)
 
 关键词：cmake kernel cross-compile cmake-templete
 
