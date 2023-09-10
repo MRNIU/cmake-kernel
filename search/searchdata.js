@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "m",
   6: "dx",
   7: "k",
-  8: "cg构"
+  8: "gr构"
 };
 
 var indexSectionNames =

@@ -35,18 +35,20 @@ var NAVTREE =
       [ "配置 ssh", "md_docker.html#autotoc_md6", null ],
       [ "配置 vscode", "md_docker.html#autotoc_md7", null ]
     ] ],
-    [ "cmake-kernel", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html", [
-      [ "设计", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md9", null ],
-      [ "使用", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md10", [
-        [ "交叉编译", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md11", null ],
-        [ "调试", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md12", null ],
-        [ "文档生成", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md13", null ],
-        [ "静态分析", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md14", null ],
-        [ "测试覆盖率", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md15", null ],
-        [ "docker", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md16", null ],
-        [ "第三方资源", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md17", null ]
-      ] ],
-      [ "已知问题", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md18", null ]
+    [ "README", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html", [
+      [ "cmake-kernel", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md8", [
+        [ "设计", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md9", null ],
+        [ "使用", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md10", [
+          [ "交叉编译", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md11", null ],
+          [ "调试", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md12", null ],
+          [ "文档生成", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md13", null ],
+          [ "静态分析", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md14", null ],
+          [ "测试覆盖率", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md15", null ],
+          [ "docker", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md16", null ],
+          [ "第三方资源", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md17", null ]
+        ] ],
+        [ "已知问题", "md__home_runner_work_cmake_kernel_cmake_kernel_README.html#autotoc_md18", null ]
+      ] ]
     ] ],
     [ "gnu_efi_test", "md__home_runner_work_cmake_kernel_cmake_kernel_test_system_test_gnu_efi_test_README.html", null ],
     [ "Classes", "annotated.html", [

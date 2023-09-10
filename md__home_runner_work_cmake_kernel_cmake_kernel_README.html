@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cmake-kernel: cmake-kernel</title>
+<title>cmake-kernel: README</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,14 +83,16 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">cmake-kernel </div>  </div>
+<div class="title">README </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a href="https://codecov.io/gh/MRNIU/cmake-kernel"><img src="https://codecov.io/gh/MRNIU/cmake-kernel/graph/badge.svg?token=J7NKK3SBNJ" alt="codecov" style="pointer-events: none;" class="inline"/></a> <img src="https://github.com/MRNIU/cmake-kernel/actions/workflows/workflow.yml/badge.svg" alt="workflow" style="pointer-events: none;" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+cmake-kernel</h1>
 <p>关键词：cmake kernel cross-compile cmake-templete</p>
 <p>用于构建内核的构建系统。</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-设计</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+设计</h2>
 <p>用于构建内核的构建系统</p>
 <p>构建系统提供的功能：</p>
 <ul>
@@ -170,8 +172,8 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <p class="startli">使用 make debug 等进入调试模式</p>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
-使用</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+使用</h2>
 <p>安装依赖</p>
 <div class="fragment"><div class="line">sudo apt install --fix-missing -y doxygen graphviz clang-format clang-tidy cppcheck qemu-system lcov gcc g++ gcc-riscv64-linux-gnu g++-riscv64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu gdb-multiarch</div>
 </div><!-- fragment --><p>根目录 CMakeList.txt 可用参数如下</p>
@@ -197,8 +199,8 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 </table>
 <p>新建 <code>CMakeUserPresets.json</code>，继承 <code>configurePresets_base</code> ，填写你需要的参数（see <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">cmake-presets</a>）。</p>
 <p>构建系统会自动下载并构建所有第三方依赖，boot，kernel，然后生成 image 文件夹，最后在 qemu 中启动（不同架构的流程有区别）。</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
-交叉编译</h2>
+<h3><a class="anchor" id="autotoc_md11"></a>
+交叉编译</h3>
 <ol type="1">
 <li>提供 gcc/clang 的支持。</li>
 <li>需要独立的 CMAKE_TOOLCHAIN_FILE 指定编译器。</li>
@@ -239,8 +241,8 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter">riscv64-ubuntu   </td><td class="markdownTableBodyCenter">riscv64   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter">TODO   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md12"></a>
-调试</h2>
+<h3><a class="anchor" id="autotoc_md12"></a>
+调试</h3>
 <div class="fragment"><div class="line"># 删除旧文件</div>
 <div class="line">rm -rf build_x86_64</div>
 <div class="line"># 生成</div>
@@ -265,31 +267,31 @@ $(document).ready(function(){initNavTree('md__home_runner_work_cmake_kernel_cmak
 <div class="line">&gt; c</div>
 </div><!-- fragment --><p>更多调试命令请参考 <a href="https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html">gdb 手册</a>。</p>
 <p>对 efi 文件的调试需要一些准备步骤，参考 <a href="https://wiki.osdev.org/Debugging_UEFI_applications_with_GDB">osdev</a>。</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
-文档生成</h2>
+<h3><a class="anchor" id="autotoc_md13"></a>
+文档生成</h3>
 <p>生成文档</p>
 <div class="fragment"><div class="line">cmake --preset=build_x86_64 </div>
 <div class="line">cmake --build build_x86_64 --target doc</div>
 </div><!-- fragment --><p>使用浏览器打开 <code>cmake-kernel/build_x86_64/doc/html/index.html</code> 查看文档。</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
-静态分析</h2>
+<h3><a class="anchor" id="autotoc_md14"></a>
+静态分析</h3>
 <p>使用 clang-tidy 与 cppcheck</p>
 <p>生成文档</p>
 <div class="fragment"><div class="line">cmake --preset=build_x86_64</div>
 <div class="line">cmake --build build_x86_64 --target clang-tidy # 在 build_x86_64 目录下生成 clang_tidy_report.log</div>
 <div class="line">cmake --build build_x86_64 --target clang-format # 格式化代码</div>
 <div class="line">cmake --build build_x86_64 --target cppcheck # 在 build_x86_64 目录下生成 cppcheck_report.log</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
-测试覆盖率</h2>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
+测试覆盖率</h3>
 <p>只会运行 ut 与 it，在 <code>build_x86_64/COVERAGE_OUTPUT_DIR</code> 目录生成测试覆盖率报告。</p>
 <div class="fragment"><div class="line">cmake --preset=build_x86_64</div>
 <div class="line">cmake --build build_x86_64 --target coverage</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
-docker</h2>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md16"></a>
+docker</h3>
 <p>提供了统一的 ubuntu+gcc 编译环境。</p>
 <p>See <a class="el" href="md_docker.html">docker.md</a>。</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
-第三方资源</h2>
+<h3><a class="anchor" id="autotoc_md17"></a>
+第三方资源</h3>
 <p>使用 <a href="https://github.com/cpm-cmake/CPM.cmake">CPM</a> 进行管理，下载的源文件会放到 3rd 文件夹下，编译结果会放在 build/_deps 文件夹下。</p>
 <p>对于原生支持 cmake 的项目，可以直接引用。</p>
 <p>不支持的项目需要手动编译。</p>
@@ -324,8 +326,8 @@ docker</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter"><a href="https://github.com/libcxxrt/libcxxrt">libcxxrt</a>   </td><td class="markdownTableBodyCenter">c++ 运行时支持   </td><td class="markdownTableBodyCenter">库   </td><td class="markdownTableBodyCenter">✔   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md18"></a>
-已知问题</h1>
+<h2><a class="anchor" id="autotoc_md18"></a>
+已知问题</h2>
 <ul>
 <li><p class="startli">gdbinit</p>
 <p class="startli">```shell To enable execution of this file add add-auto-load-safe-path /home/nzh_ubuntu/GitHub/cmake-kernel/.gdbinit line to your configuration file "/home/yourusername/.config/gdb/gdbinit". To completely disable this security protection add set auto-load safe-path / line to your configuration file "/home/yourusername/.config/gdb/gdbinit". For more information about this security protection see the "Auto-loading safe path" section in the GDB manual. E.g., run from the shell: info "(gdb)Auto-loading safe path" ```</p>
@@ -340,7 +342,7 @@ docker</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Sep 9 2023 15:58:26 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Sep 10 2023 01:39:59 for cmake-kernel by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
