@@ -2,7 +2,7 @@
 # This file is a part of MRNIU/cmake-kernel
 # (https://github.com/MRNIU/cmake-kernel).
 # 
-# x86_64-x86_64-clang.cmake for MRNIU/cmake-kernel.
+# clang.cmake for MRNIU/cmake-kernel.
 
 # 目标为无操作系统的环境
 set(CMAKE_SYSTEM_NAME Generic)
@@ -11,7 +11,7 @@ set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
 # @todo mac 测试
 if (APPLE)
-    message(STATUS "Now is Apple systens.")
+    message(STATUS "Now is Apple systems.")
     # @todo
 elseif (UNIX)
     message(STATUS "Now is UNIX-like OS's.")
